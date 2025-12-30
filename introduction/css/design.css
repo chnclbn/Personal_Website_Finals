@@ -1,142 +1,38 @@
-* {
-    box-sizing: border-box;
+/* FONTS */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Oswald", sans-serif;
 }
 
 body {
-    margin: 0;
-    font-family: "Open Sans", sans-serif;
-    background-color: #fcf8f9;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-areas:
-        "header"
-        "menu"
-        "main"
-        "Me"
-        "footer";
-    gap: 10px;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.header {
-    grid-area: header;
-    background-color: #e91e63;
-    color: white;
-    text-align: center;
-    padding: 25px;
-}
-
-.header h1 {
-    font-family: "Oswald";
-    font-size: 40px;
-    margin: 0;
-}
-
-.menu {
-    grid-area: menu;
-    background: white;
-    padding: 10px;
-}
-
-.menu ul {
-    list-style: none;
-    padding: 0;
-}
-
-.menu li {
-    padding: 12px;
-    margin-bottom: 8px;
-    background: #fce4ec;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.menu li:hover {
-    background: #f06292;
-    color: white;
+  font-family: "Open Sans", sans-serif;
 }
 
 
-.content {
-    grid-area: main;
+.w3-display-container img {
+  max-height: 600px;
+  object-fit: cover;
 }
 
 
-.card {
-    background: white;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.card h2 {
-    color: #e91e63;
-}
-
-.card img {
-    width: 100%;
-    border-radius: 5px;
-}
-
-.date {
-    color: gray;
-    font-size: 14px;
+.w3-container.w3-white {
+  border-radius: 6px;
 }
 
 
-.btn {
-    background: #e91e63;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.btn:hover {
-    background: #c2185b;
+.w3-button:hover {
+  opacity: 0.85;
 }
 
 
-.Me {
-    grid-area: Me;
-    background: white;
-    padding: 15px;
-    text-align: center;
-    border-radius: 6px;
-}
-
-.Me img {
-    width: 100%;
-    border-radius: 8px;
-}
-
-.icons i {
-    font-size: 22px;
-    margin: 8px;
-    cursor: pointer;
+.w3-grayscale {
+  filter: grayscale(100%);
 }
 
 
-.footer {
-    grid-area: footer;
-    background: #f06292;
-    color: white;
-    text-align: center;
-    padding: 15px;
+.w3-modal-content {
+  border-radius: 8px;
 }
 
-
-@media (min-width: 768px) {
-    .grid-container {
-        grid-template-columns: 1fr 3fr 1fr;
-        grid-template-areas:
-            "header header header"
-            "menu main Me"
-            "footer footer footer";
-    }
+footer {
+  text-align: center;
 }

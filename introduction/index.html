@@ -1,54 +1,102 @@
 <!DOCTYPE html>
-<html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/design.css">
-<title>WEBPROG SF241 Introduction</title>
+  <title>Jane Bloglife</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="design.css">
 </head>
-<body>
 
-<div class="grid-container">
+<body class="w3-light-grey">
 
-    <div class="header">
-        <h1>˚ʚ♡ɞ˚Chelsea Nacalaban˚ʚ♡ɞ˚</h1>
-    </div>
 
-    <div class="menu">
-        <h2>About & Education</h2>
-        <ul>
-            <li>Name: Chelsea Hillary M. Nacalaban</li>
-            <li>Current Course: Computer Science, Specialization: Forensics and Cyber Security</li>
-        </ul>
-        <h3>Education</h3>
-        <ul>
-            <li>Junior High School: Sto Nino Catholic School</li>
-            <li>Senior High School: Asia Pacific College</li>
-        </ul>
-    </div>
-
-    <div class="content">
-        <h2>Hobbies & Interests</h2>
-        <p>I enjoy watching K-dramas, listening to K-pop, and catching up on K-variety shows. I also love going café hopping to try out new spots.</p>
-
-        <hr>
-
-        <h2>Goals In Life / Dream </h2>
-        <p>My biggest dream is traveling the world. I want to explore different cultures and see iconic landmarks across various countries.</p>
-        
-        <hr>
-        
-        <h2>A Little About Me</h2>
-        <p>Hi, I am Chelsea Hillary M. Nacalaban. I love watching K-drama, K-pop, K-variety shows and many more.</p>
-    </div>
-
-    <div class="Me">
-        <img src="https://raw.githubusercontent.com/chnclbn/Webprog_Nacalaban/refs/heads/main/introduction/Pictures/Image.jfif" alt="Chelsea Hillary M. Nacalaban Profile Picture" style="width: 100%; height: auto; border-radius: 8px;">
-        <p style="text-align: center; margin-top: 10px;">Future Cyber Security Specialist</p>
-    </div>
-
-    <div class="footer">
-        <p>Thank you for visiting my Website</p>
-    </div>
+<div class="w3-bar w3-black w3-hide-small">
+  <a href="#" class="w3-bar-item w3-button"><i class="fa fa-facebook-official"></i></a>
+  <a href="#" class="w3-bar-item w3-button"><i class="fa fa-instagram"></i></a>
+  <a href="#" class="w3-bar-item w3-button"><i class="fa fa-twitter"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-right"><i class="fa fa-search"></i></a>
 </div>
+
+
+<div class="w3-content" style="max-width:1600px">
+
+  <header class="w3-container w3-center w3-padding-48 w3-white">
+    <h1 class="w3-xxxlarge"><b>JANE BLOGLIFE</b></h1>
+    <h6>Welcome to the blog of <span class="w3-tag">Jane's world</span></h6>
+  </header>
+
+  <header class="w3-display-container w3-wide">
+    <img src="jane.jpg" alt="Fashion Blog" class="w3-image">
+    <div class="w3-display-left w3-padding-large">
+      <h1 class="w3-text-white">Jane's</h1>
+      <h1 class="w3-jumbo w3-text-white w3-hide-small"><b>FASHION BLOG</b></h1>
+      <button class="w3-button w3-white w3-padding-large w3-opacity"
+        onclick="document.getElementById('subscribe').style.display='block'">
+        SUBSCRIBE
+      </button>
+    </div>
+  </header>
+
+  <div class="w3-row w3-padding w3-border">
+
+    <div class="w3-col l8 s12">
+
+      <div class="w3-container w3-white w3-margin w3-padding-large">
+        <h3>TITLE HEADING</h3>
+        <h5>May 2, 2016</h5>
+        <img src="girl_hat.jpg" class="w3-image">
+        <p><strong>More Hats!</strong> I am crazy about hats these days.</p>
+        <button class="w3-button w3-border" onclick="likeFunction(this)">
+          <i class="fa fa-thumbs-up"></i> Like
+        </button>
+      </div>
+
+    </div>
+
+    <div class="w3-col l4">
+
+      <div class="w3-white w3-margin">
+        <img src="avatar_girl2.jpg" class="w3-image w3-grayscale">
+        <div class="w3-container w3-black">
+          <h4>My Name</h4>
+          <p>Just me, myself and I.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<div id="subscribe" class="w3-modal">
+  <div class="w3-modal-content w3-padding">
+    <span onclick="document.getElementById('subscribe').style.display='none'"
+          class="w3-button w3-right">&times;</span>
+    <h2>Subscribe</h2>
+    <input class="w3-input w3-border" placeholder="Email">
+    <button class="w3-button w3-red w3-margin-top">Subscribe</button>
+  </div>
+</div>
+
+
+<footer class="w3-container w3-dark-grey w3-padding-32">
+  <p>Powered by w3.css</p>
+</footer>
+
+<script>
+function likeFunction(btn) {
+  btn.innerHTML = "✓ Liked";
+  btn.style.fontWeight = "bold";
+}
+</script>
+
 </body>
 </html>
