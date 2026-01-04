@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
   <title>Chelsea Bloglife</title>
   <meta charset="UTF-8">
@@ -17,32 +18,27 @@
 <body class="w3-light-grey">
 
 <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-animate-right"
-     style="display:none;z-index:3;width:35%;min-width:300px;right:0;"
-     id="searchSidebar">
+     style="display:none;z-index:3;width:300px;right:0;"
+     id="mySidebar">
 
-  <button onclick="closeSearchSidebar()"
-          class="w3-bar-item w3-button w3-large">
-    Close ✕
+  <button onclick="closeSidebar()" class="w3-bar-item w3-button w3-large">
+    ✕ Close
   </button>
 
-  <div class="w3-container w3-padding">
-    <h3>Search</h3>
-
-    <!-- Simple navigation option -->
-    <button class="w3-button w3-black w3-block w3-margin-top"
-            onclick="goToAboutMe()">
-      Go to About Me
-    </button>
-  </div>
+  <button class="w3-bar-item w3-button" onclick="goToAboutMe()">
+    About Me
+  </button>
 </nav>
 
 <div class="w3-bar w3-black w3-hide-small">
   <a href="https://www.facebook.com/share/1RrumNKpRz/?mibextid=wwXIfr" class="w3-bar-item w3-button"><i class="fa fa-facebook-official"></i></a>
-  <a href="https://www.instagram.com/chelsxe?igsh=MXB6ZWplbjF2eHg0NA%3D%3D&utm_source=qr" class="w3-bar-item w3-button"><i class="fa fa-instagram"></i></a>
-  <a href="https://www.linkedin.com/in/chelsea-hillary-nacalaban-116a70241/" class="w3-bar-item w3-button"><i class="fa fa-linkedin"></i></a>
-  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right" onclick="openSearchSidebar()"><i class="fa fa-search"></i></a>
+  <a href="https://www.instagram.com/chelsxe" class="w3-bar-item w3-button"><i class="fa fa-instagram"></i></a>
+  <a href="https://www.linkedin.com/in/chelsea-hillary-nacalaban-116a70241/" class="w3-bar-item w3-button"><i class="fa fa-linkedin"></i> </a>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right"
+     onclick="openSidebar()">
+    <i class="fa fa-bars"></i>
+  </a>
 </div>
-
 
 <div class="w3-content" style="max-width:1600px">
 
@@ -51,14 +47,13 @@
     <h6>Welcome to the blog of <span class="w3-tag">Chelsea's world</span></h6>
   </header>
 
-   <header class="w3-display-container w3-wide">
-    <img src="Pictures/mee.jpg"
-         alt="Chelsea Blog" class="w3-image hero-img">
+  <header class="w3-display-container w3-wide">
+    <img src="Pictures/mee.jpg" alt="Chelsea Blog" class="w3-image hero-img">
     <div class="w3-display-left w3-padding-large">
       <h1 class="w3-text-white">Chelsea's</h1>
       <h1 class="w3-jumbo w3-text-white w3-hide-small"><b>LIFESTYLE BLOG</b></h1>
       <button class="w3-button w3-white w3-padding-large w3-opacity"
-        onclick="document.getElementById('subscribe').style.display='block'">
+              onclick="document.getElementById('subscribe').style.display='block'">
         SUBSCRIBE
       </button>
     </div>
@@ -68,10 +63,11 @@
 
     <div class="w3-col l8 s12">
 
-      <div class="w3-container w3-white w3-margin w3-padding-large" id="aboutMe"></div>
+      <div class="w3-container w3-white w3-margin w3-padding-large" id="aboutMe">
         <h3>ABOUT ME</h3>
         <h5>Chelsea Hillary M. Nacalaban</h5>
-      <p>
+
+        <p>
           <strong>Hello!</strong> I am a Computer Science student specializing in
           Forensics and Cyber Security. I enjoy watching K-dramas, listening to
           K-pop, and keeping up with K-variety shows.
@@ -93,7 +89,6 @@
     </div>
 
     <div class="w3-col l4">
-
       <div class="w3-white w3-margin">
         <img src="Pictures/computer icon.jpg" class="w3-image w3-grayscale">
         <div class="w3-container w3-black">
@@ -102,12 +97,10 @@
           <p>Asia Pacific College</p>
         </div>
       </div>
-
     </div>
 
   </div>
 </div>
-
 
 <div id="subscribe" class="w3-modal">
   <div class="w3-modal-content w3-padding">
@@ -119,31 +112,29 @@
   </div>
 </div>
 
-
-<footer class="w3-container w3-dark-grey w3-padding-32">
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-center">
   <p>Thank you for visiting my website</p>
 </footer>
 
 <script>
-function likeFunction(btn) {
-  btn.innerHTML = "✓ Liked";
-  btn.style.fontWeight = "bold";
-}
-</script>
-<script>
-function openSearchSidebar() {
-  document.getElementById("searchSidebar").style.display = "block";
+function openSidebar() {
+  document.getElementById("mySidebar").style.display = "block";
 }
 
-function closeSearchSidebar() {
-  document.getElementById("searchSidebar").style.display = "none";
+function closeSidebar() {
+  document.getElementById("mySidebar").style.display = "none";
 }
 
 function goToAboutMe() {
-  closeSearchSidebar();
+  closeSidebar();
   document.getElementById("aboutMe").scrollIntoView({
     behavior: "smooth"
   });
+}
+
+function likeFunction(btn) {
+  btn.innerHTML = "✓ Liked";
+  btn.style.fontWeight = "bold";
 }
 </script>
 
