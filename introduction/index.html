@@ -16,12 +16,31 @@
 
 <body class="w3-light-grey">
 
+<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-animate-right"
+     style="display:none;z-index:3;width:35%;min-width:300px;right:0;"
+     id="searchSidebar">
+
+  <button onclick="closeSearchSidebar()"
+          class="w3-bar-item w3-button w3-large">
+    Close ✕
+  </button>
+
+  <div class="w3-container w3-padding">
+    <h3>Search</h3>
+
+    <!-- Simple navigation option -->
+    <button class="w3-button w3-black w3-block w3-margin-top"
+            onclick="goToAboutMe()">
+      Go to About Me
+    </button>
+  </div>
+</nav>
 
 <div class="w3-bar w3-black w3-hide-small">
   <a href="https://www.facebook.com/share/1RrumNKpRz/?mibextid=wwXIfr" class="w3-bar-item w3-button"><i class="fa fa-facebook-official"></i></a>
   <a href="https://www.instagram.com/chelsxe?igsh=MXB6ZWplbjF2eHg0NA%3D%3D&utm_source=qr" class="w3-bar-item w3-button"><i class="fa fa-instagram"></i></a>
   <a href="https://www.linkedin.com/in/chelsea-hillary-nacalaban-116a70241/" class="w3-bar-item w3-button"><i class="fa fa-linkedin"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-right"><i class="fa fa-search"></i></a>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right" onclick="openSearchSidebar()"><i class="fa fa-search"></i></a>
 </div>
 
 
@@ -49,7 +68,7 @@
 
     <div class="w3-col l8 s12">
 
-      <div class="w3-container w3-white w3-margin w3-padding-large">
+      <div class="w3-container w3-white w3-margin w3-padding-large" id="aboutMe"></div>
         <h3>ABOUT ME</h3>
         <h5>Chelsea Hillary M. Nacalaban</h5>
       <p>
@@ -109,6 +128,22 @@
 function likeFunction(btn) {
   btn.innerHTML = "✓ Liked";
   btn.style.fontWeight = "bold";
+}
+</script>
+<script>
+function openSearchSidebar() {
+  document.getElementById("searchSidebar").style.display = "block";
+}
+
+function closeSearchSidebar() {
+  document.getElementById("searchSidebar").style.display = "none";
+}
+
+function goToAboutMe() {
+  closeSearchSidebar();
+  document.getElementById("aboutMe").scrollIntoView({
+    behavior: "smooth"
+  });
 }
 </script>
 
