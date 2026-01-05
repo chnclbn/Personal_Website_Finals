@@ -21,13 +21,8 @@
      style="display:none;z-index:3;width:300px;right:0;"
      id="mySidebar">
 
-  <button onclick="closeSidebar()" class="w3-bar-item w3-button w3-large">
-    ✕ Close
-  </button>
+  <button onclick="closeSidebar()" class="w3-bar-item w3-button w3-large">✕ Close</button>
 
-  <button class="w3-bar-item w3-button" onclick="goToAboutMe()">
-    About Me
-  </button>
   <button class="w3-bar-item w3-button" onclick="scrollToSection('education')">
     Education / Achievements
   </button>
@@ -37,7 +32,7 @@
   </button>
 
   <button class="w3-bar-item w3-button" onclick="scrollToSection('goals')">
-    Goals In Life / Dream
+    Goals & Dreams
   </button>
 </nav>
 
@@ -62,11 +57,11 @@
     <img src="Pictures/mee.jpg" alt="Chelsea Blog" class="w3-image hero-img">
     <div class="w3-display-left w3-padding-large">
       <h1 class="w3-text-white">Chelsea's</h1>
-      <h1 class="w3-jumbo w3-text-white w3-hide-small"><b>LIFESTYLE BLOG</b></h1>
+      <h1 class="w3-jumbo w3-text-white w3-hide-small"><b>About</b></h1>
       <button class="w3-button w3-white w3-padding-large w3-opacity"
-              onclick="document.getElementById('subscribe').style.display='block'">
-        SUBSCRIBE
-      </button>
+        onclick="heartReact(this)">
+  ❤️ LOVE
+</button>
     </div>
   </header>
 
@@ -74,47 +69,39 @@
 
     <div class="w3-col l8 s12">
 
-      <div class="w3-container w3-white w3-margin w3-padding-large" id="aboutMe">
-        <h3>ABOUT ME</h3>
-        <h5>Chelsea Hillary M. Nacalaban</h5>
+      <div class="w3-container w3-white w3-margin w3-padding-large" id="education">
+        <h3>Education / Achievements</h3>
+        <p>Junior High School – Sto Niño Catholic School</p>
+        <p>Senior High School – Asia Pacific College</p>
 
+        <h4>Course</h4>
         <p>
-          <strong>Hello!</strong> I am a Computer Science student specializing in
-          Forensics and Cyber Security.
+          Bachelor of Science in Computer Science<br>
+          Specialization in Forensics and Cyber Security
+        </p>
+      </div>
+
+      <div class="w3-container w3-white w3-margin w3-padding-large" id="hobbies">
+        <h3>Hobbies & Interests</h3>
+        <p>
+          I enjoy watching K-dramas, listening to K-pop, and going café hopping.
+        </p>
+      </div>
+
+      <div class="w3-container w3-white w3-margin w3-padding-large" id="goals">
+        <h3>Goals & Dreams</h3>
+        <p>
+          Traveling the world is my life’s dream. I want to explore cultures and visit iconic landmarks.
         </p>
 
-        <hr>
-
-  <div class="w3-container w3-white w3-margin w3-padding-large" id="education">
-  <h3>Education / Achievements</h3>
-  <p>Junior High School – Sto Niño Catholic School</p>
-  <p>Senior High School – Asia Pacific College</p>
-
-  <h4>Course</h4>
-  <p>
-    Currently pursuing a bachelor's degree in Computer Science
-    with specialization in Forensics and Cyber Security.
-  </p>
-</div>
-
-
-<div class="w3-container w3-white w3-margin w3-padding-large" id="hobbies">
-  <h3>Hobbies & Interests</h3>
-  <p>
-    I enjoy watching K-dramas, listening to K-pop, and going café hopping.
-  </p>
-</div>
-  
-<div class="w3-container w3-white w3-margin w3-padding-large" id="goal"></div>
-  <h3>Goals & Dreams</h3>
-    <p>
-      My biggest dream is to travel the world, explore different cultures,
-      and visit iconic landmarks across various countries.
-        </p>
-
-        <button class="w3-button w3-border" onclick="likeFunction(this)">
-          <i class="fa fa-thumbs-up"></i> Like
-        </button>
+        <h4>Rate My Website</h4>
+        <div id="rating">
+          <span onclick="rate(1)">★</span>
+          <span onclick="rate(2)">★</span>
+          <span onclick="rate(3)">★</span>
+          <span onclick="rate(4)">★</span>
+          <span onclick="rate(5)">★</span>
+        </div>
       </div>
 
     </div>
@@ -133,16 +120,6 @@
   </div>
 </div>
 
-<div id="subscribe" class="w3-modal">
-  <div class="w3-modal-content w3-padding">
-    <span onclick="document.getElementById('subscribe').style.display='none'"
-          class="w3-button w3-right">&times;</span>
-    <h2>Subscribe</h2>
-    <input class="w3-input w3-border" placeholder="Email">
-    <button class="w3-button w3-red w3-margin-top">Subscribe</button>
-  </div>
-</div>
-
 <footer class="w3-container w3-dark-grey w3-padding-32 w3-center">
   <p>Thank you for visiting my website</p>
 </footer>
@@ -156,16 +133,21 @@ function closeSidebar() {
   document.getElementById("mySidebar").style.display = "none";
 }
 
-function goToAboutMe() {
+function scrollToSection(id) {
   closeSidebar();
-  document.getElementById("aboutMe").scrollIntoView({
-    behavior: "smooth"
-  });
+  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
 }
 
-function likeFunction(btn) {
-  btn.innerHTML = "✓ Liked";
+function heartReact(btn) {
+  btn.innerHTML = "❤️ Loved";
   btn.style.fontWeight = "bold";
+}
+
+function rate(stars) {
+  const rating = document.getElementById("rating").children;
+  for (let i = 0; i < rating.length; i++) {
+    rating[i].style.color = i < stars ? "gold" : "gray";
+  }
 }
 </script>
 
