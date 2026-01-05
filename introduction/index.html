@@ -28,6 +28,17 @@
   <button class="w3-bar-item w3-button" onclick="goToAboutMe()">
     About Me
   </button>
+  <button class="w3-bar-item w3-button" onclick="scrollToSection('education')">
+    Education / Achievements
+  </button>
+
+  <button class="w3-bar-item w3-button" onclick="scrollToSection('hobbies')">
+    Hobbies & Interests
+  </button>
+
+  <button class="w3-bar-item w3-button" onclick="scrollToSection('goals')">
+    Goals In Life / Dream
+  </button>
 </nav>
 
 <div class="w3-bar w3-black w3-hide-small">
@@ -69,16 +80,36 @@
 
         <p>
           <strong>Hello!</strong> I am a Computer Science student specializing in
-          Forensics and Cyber Security. I enjoy watching K-dramas, listening to
-          K-pop, and keeping up with K-variety shows.
+          Forensics and Cyber Security.
         </p>
 
         <hr>
 
-        <h3>Goals & Dreams</h3>
-        <p>
-          My biggest dream is to travel the world, explore different cultures,
-          and visit iconic landmarks across various countries.
+  <div class="w3-container w3-white w3-margin w3-padding-large" id="education">
+  <h3>Education / Achievements</h3>
+  <p>Junior High School – Sto Niño Catholic School</p>
+  <p>Senior High School – Asia Pacific College</p>
+
+  <h4>Course</h4>
+  <p>
+    Currently pursuing a bachelor's degree in Computer Science
+    with specialization in Forensics and Cyber Security.
+  </p>
+</div>
+
+
+<div class="w3-container w3-white w3-margin w3-padding-large" id="hobbies">
+  <h3>Hobbies & Interests</h3>
+  <p>
+    I enjoy watching K-dramas, listening to K-pop, and going café hopping.
+  </p>
+</div>
+  
+<div class="w3-container w3-white w3-margin w3-padding-large" id="goal"></div>
+  <h3>Goals & Dreams</h3>
+    <p>
+      My biggest dream is to travel the world, explore different cultures,
+      and visit iconic landmarks across various countries.
         </p>
 
         <button class="w3-button w3-border" onclick="likeFunction(this)">
