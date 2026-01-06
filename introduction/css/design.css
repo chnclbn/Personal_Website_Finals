@@ -1,33 +1,52 @@
+
 .portfolio-hero {
   min-height: 100vh;
-  background: #f2f2f2;
+  background: #ffffff;
   display: flex;
-  align-items: center;
+  align-items: flex-end; 
   justify-content: center;
+  padding-bottom: 40px;
 }
 
 .hero-content {
   text-align: center;
 }
 
+
 .arch-svg {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
   width: 520px;
   max-width: 90%;
-  margin-bottom: -50px;
 }
 
 .arch-svg text {
   font-family: "Oswald", sans-serif;
-  font-size: 30px;
-  letter-spacing: 5px;
+  font-size: 32px;
+  letter-spacing: 6px;
   fill: black;
 }
 
-.hero-image-container img {
-  width: 260px;
+.hero-image-container {
+  position: relative;
 }
 
-.by-line {
-  font-size: 14px;
-  letter-spacing: 1px;
+.hero-image-container img {
+  width: 320px;
+  max-width: 90%;
+}
+
+
+.oval-frame {
+  max-width: 220px;   
+  margin: auto;
+  border-radius: 50% / 60%;
+  overflow: hidden;
+}
+
+.oval-frame img {
+  width: 100%;
+  display: block;
 }
