@@ -1,82 +1,33 @@
-
 .portfolio-hero {
-  background-color: #d1cfcc;
-  padding: 60px 0;
+  min-height: 100vh;
+  background: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
   text-align: center;
 }
 
 .arch-svg {
-  width: 100%;
-  max-width: 500px;
-  margin-bottom: -80px; 
+  width: 520px;
+  max-width: 90%;
+  margin-bottom: -50px;
 }
 
 .arch-svg text {
-  font-family: 'Oswald', sans-serif;
-  font-size: 40px;
-  letter-spacing: 4px;
-  font-weight: bold;
-}
-
-.hero-image-container {
-  position: relative;
-  display: inline-block;
+  font-family: "Oswald", sans-serif;
+  font-size: 30px;
+  letter-spacing: 5px;
+  fill: black;
 }
 
 .hero-image-container img {
-  width: 300px;
-  height: 400px;
-  object-fit: cover;
+  width: 260px;
 }
 
 .by-line {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 1px solid #fff;
-  background: rgba(0,0,0,0.3);
-  color: white;
-  padding: 5px 20px;
-  border-radius: 30px;
-}
-
-
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  background: #000;
-  color: #fff;
-  padding: 80px 10%;
-  align-items: center;
-  gap: 30px;
-}
-
-.oval-frame {
-  width: 100%;
-  aspect-ratio: 1 / 1.4;
-  border-radius: 200px; 
-  overflow: hidden;
-  border: 1px solid #444;
-}
-
-.oval-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.work-btn {
-  background: none;
-  border: 1px solid #fff;
-  color: #fff;
-  padding: 10px 30px;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.work-btn:hover {
-  background: #fff;
-  color: #000;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
