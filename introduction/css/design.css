@@ -41,7 +41,7 @@
   border-radius: 30px;
 }
 
-/* Three Column Grid */
+
 .info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
