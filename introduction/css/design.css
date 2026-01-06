@@ -1,75 +1,63 @@
-body {
-  background-color: #000;
-  color: #fff;
-  font-family: 'Open Sans', sans-serif;
-  margin: 0;
-}
-
-h1, h2, .arch-text {
-  font-family: 'Oswald', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
 
 .portfolio-hero {
-  background-color: #d1cfcc; 
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  color: #000;
-}
-
-.hero-content {
+  background-color: #d1cfcc;
+  padding: 60px 0;
   text-align: center;
 }
 
-.arch-text {
-  font-size: 80px;
-  margin-bottom: -40px;
+.arch-svg {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: -80px; 
+}
+
+.arch-svg text {
+  font-family: 'Oswald', sans-serif;
+  font-size: 40px;
+  letter-spacing: 4px;
+  font-weight: bold;
+}
+
+.hero-image-container {
   position: relative;
-  z-index: 2;
+  display: inline-block;
 }
 
 .hero-image-container img {
-  width: 350px;
-  height: 450px;
+  width: 300px;
+  height: 400px;
   object-fit: cover;
-  border-radius: 5px;
 }
 
 .by-line {
-  border: 1px solid #000;
-  display: inline-block;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid #fff;
+  background: rgba(0,0,0,0.3);
+  color: white;
   padding: 5px 20px;
-  border-radius: 20px;
-  margin-top: 20px;
+  border-radius: 30px;
 }
 
-
+/* Three Column Grid */
 .info-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  padding: 80px 5%;
-  background-color: #000;
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  background: #000;
+  color: #fff;
+  padding: 80px 10%;
   align-items: center;
-  text-align: center;
+  gap: 30px;
 }
-
-.info-col h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
 
 .oval-frame {
   width: 100%;
-  aspect-ratio: 1 / 1.5;
-  border: 1px solid #555;
-  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  aspect-ratio: 1 / 1.4;
+  border-radius: 200px; 
   overflow: hidden;
+  border: 1px solid #444;
 }
 
 .oval-frame img {
@@ -78,28 +66,17 @@ h1, h2, .arch-text {
   object-fit: cover;
 }
 
-.sparkles {
-  font-size: 24px;
-  margin: 20px 0;
-}
-
 .work-btn {
   background: none;
   border: 1px solid #fff;
   color: #fff;
-  padding: 10px 25px;
-  border-radius: 25px;
-  text-transform: lowercase;
-  margin: 20px 0;
+  padding: 10px 30px;
+  border-radius: 30px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .work-btn:hover {
   background: #fff;
   color: #000;
-}
-
-.lorem {
-  font-size: 14px;
-  opacity: 0.7;
 }
