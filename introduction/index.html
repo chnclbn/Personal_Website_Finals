@@ -1,68 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Chelsea's Life Information</title>
+  <title>Chelsea's Portfolio</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
   <link rel="stylesheet" href="design.css">
-  <header class="portfolio-hero">
-  <div class="hero-content">
-    <h1 class="arch-text">CHELSEA PORTFOLIO</h1>
-    <div class="hero-image-container">
-      <img src="Pictures/me1.png" alt="Chelsea">
-    </div>
-    <p class="by-line">by Chelsea Nacalaban</p>
-  </div>
 </head>
 
-<nav class="w3-sidebar w3-bar-block w3-card w3-animate-right"
-     style="display:none;z-index:3;width:500px;right:0;"
+<body>
+
+<nav class="w3-sidebar w3-bar-block w3-card w3-animate-right w3-black" 
+     style="display:none;z-index:3;width:300px;right:0;" 
      id="mySidebar">
-
-  <button onclick="closeSidebar()" class="w3-bar-item w3-button w3-large">
-    ✕ Close
-  </button>
-
-  <button class="w3-bar-item w3-button" style="font-size: 22px;" onclick="scrollToSection('about')">
-    About Me
-  </button>
-
-  <button class="w3-bar-item w3-button" style="font-size: 22px;" onclick="scrollToSection('education')">
-    Education / Achievements
-  </button>
-
-  <button class="w3-bar-item w3-button" style="font-size: 22px;" onclick="scrollToSection('hobbies')">
-    Hobbies & Interests
-  </button>
-
-  <button class="w3-bar-item w3-button" style="font-size: 22px;" onclick="scrollToSection('goals')">
-    Goals & Dreams
-  </button>
+  <button onclick="closeSidebar()" class="w3-bar-item w3-button w3-large">✕ Close</button>
+  <button class="w3-bar-item w3-button" onclick="scrollToSection('home')">Home</button>
+  <button class="w3-bar-item w3-button" onclick="scrollToSection('about')">About Me</button>
+  <button class="w3-bar-item w3-button" onclick="scrollToSection('education')">Education</button>
+  <button class="w3-bar-item w3-button" onclick="scrollToSection('hobbies')">Hobbies</button>
+  <button class="w3-bar-item w3-button" onclick="scrollToSection('goals')">Goals</button>
 </nav>
 
 <div class="w3-bar w3-black w3-hide-small w3-xlarge w3-padding-16">
-  <a href="https://www.facebook.com/share/1RrumNKpRz/?mibextid=wwXIfr" class="w3-bar-item w3-button"><i class="fa fa-facebook-official"></i></a>
-  <a href="https://www.instagram.com/chelsxe/?igsh=MXB6ZWplbjF2eHg0NA%3D%3D&utm_source=qr#" class="w3-bar-item w3-button"><i class="fa fa-instagram"></i></a>
+  <a href="https://www.facebook.com/share/1RrumNKpRz/" class="w3-bar-item w3-button"><i class="fa fa-facebook-official"></i></a>
+  <a href="https://www.instagram.com/chelsxe/" class="w3-bar-item w3-button"><i class="fa fa-instagram"></i></a>
   <a href="https://www.linkedin.com/in/chelsea-hillary-nacalaban-116a70241/" class="w3-bar-item w3-button"><i class="fa fa-linkedin"></i> </a>
-  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right"
-     onclick="openSidebar()">
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right" onclick="openSidebar()">
     <i class="fa fa-bars"></i>
   </a>
 </div>
+
 <header class="portfolio-hero" id="home">
   <div class="hero-content">
     <svg viewBox="0 0 500 200" class="arch-svg">
       <path id="curve" d="M100,160 Q250,40 400,160" fill="transparent" />
       <text>
-        <textPath href="#curve" startOffset="50%" text-anchor="middle">UGC PORTFOLIO</textPath>
+        <textPath href="#curve" startOffset="50%" text-anchor="middle">CHELSEA PORTFOLIO</textPath>
       </text>
     </svg>
     
@@ -73,28 +50,15 @@
   </div>
 </header>
 
-<header class="w3-display-container w3-wide">
-  <img src="Pictures/mee.jpg" class="w3-image" style="width:100%">
-  <div class="w3-display-left w3-padding-large">
-    <h1 class="w3-text-black"><strong>Chelsea's</h1></strong>
-    <h1 class="w3-jumbo w3-text-black"><strong><b>Life</b></h1></strong>
-
-    <button class="w3-button w3-white w3-padding-large w3-opacity"
-            onclick="heartReact(this)">
-      ❤️ LOVE
-    </button>
-  </div>
-</header>
-
 <div class="w3-container w3-padding-64 w3-white" id="about">
   <div class="w3-row-padding">
-
     <div class="w3-col l5 m12">
-      <img src="Pictures/Image (2).jpg" class="w3-image" style="width:300px">
-      <div class="w3-container w3-black" style="width:300px">
+      <div class="oval-frame">
+        <img src="Pictures/Image (2).jpg" alt="Chelsea Hillary">
+      </div>
+      <div class="w3-container w3-black w3-margin-top">
         <h4>Chelsea Hillary M. Nacalaban</h4>
         <p>Future Cyber Security Specialist</p>
-        <p>Asia Pacific College</p>
       </div>
     </div>
 
@@ -102,78 +66,58 @@
       <h1 class="w3-xxxlarge"><b>ABOUT</b></h1>
       <p style="font-size: 22px;">Hi! I’m <strong>Chelsea Hillary M. Nacalaban.</strong></p>
       <p style="font-size: 19px;">A Computer Science student specializing in Forensics and Cyber Security. I am passionate about technology, creativity, and continuous learning.</p>
-      <p style="font-size: 19px;">Exploring new ideas, designs, and innovations is something I really enjoy doing. I take enjoy in developing simple projects, learning from errors, and consistently enhancing my skills. This is the place where I share my experiences, ideas, and journey with others.</p>
+      <div class="sparkles">✦ ✦ ✦</div>
+      <p style="font-size: 19px;">Exploring new ideas, designs, and innovations is something I really enjoy doing.</p>
     </div>
-
   </div>
 </div>
 
-
 <div class="w3-container w3-padding-64 w3-light-grey" id="education">
   <div class="w3-row-padding">
-
     <div class="w3-col l7 m12">
       <h2><b>Education / Achievements</b></h2>
-
-      <p style="font-size: 19px;"><strong>Junior High School</strong><br>
-      Sto Niño Catholic School</p>
-
-      <p style="font-size: 19px;"><strong>Senior High School</strong><br>
-      Asia Pacific College with the strand of Science, Technology, Engineering, and Mathematics </p>
-
-      <p style="font-size: 19px;"><strong>Course</strong><br>
-      Currently Studying Bachelor of Science in Computer Science<br>
-      Specialization in Forensics and Cyber Security</p>
+      <p><strong>Junior High:</strong> Sto Niño Catholic School</p>
+      <p><strong>Senior High:</strong> Asia Pacific College (STEM)</p>
+      <p><strong>College:</strong> BS Computer Science, Forensics & Cyber Security</p>
     </div>
-
     <div class="w3-col l5 m12">
-      <img src="Pictures/computer icon.jpg" class="w3-image w3-grayscale">
-
+      <img src="Pictures/computer icon.jpg" class="w3-image w3-grayscale" style="max-width:300px">
     </div>
-
   </div>
 </div>
 
 <div class="w3-container w3-padding-64 w3-white" id="hobbies">
   <div class="w3-row-padding">
     <div class="w3-col l4 m12">
-      <img src="Pictures/Movie.jpg" class="w3-image" style="width:150%; max-width:500px">
+      <img src="Pictures/Movie.jpg" class="w3-image" style="width:100%">
     </div>
     <div class="w3-col l8 m12">
       <h2><b>Hobbies & Interests</b></h2>
-      <p style="font-size: 19px;">
-        When I have some spare time, I like to watch Korean dramas because they allow me to unwind and appreciate the various cultures and narrative approaches that exist in the world. K-pop is another genre that I enjoy listening to because it inspires me and helps me maintain my energy levels throughout the day. In addition, I take pleasure in going to a variety of different cafés, where I get to experience new places, sample a variety of beverages, and spend time relaxing or thinking.
-      </p>
+      <p style="font-size: 19px;">I enjoy Korean dramas, K-pop, and exploring different cafés to relax and think.</p>
     </div>
   </div>
 </div>
 
 <div class="w3-container w3-padding-64 w3-dark-grey" id="goals">
   <div class="w3-row-padding">
-    <div class="w3-col l8 m12 w3-container">
+    <div class="w3-col l8 m12">
       <h2><b>Goals & Dreams</b></h2>
-      <p style="font-size: 19px;">
-        Traveling the world, exploring different cultures, and visiting iconic
-        landmarks is my biggest dream.
-      </p>
+      <p style="font-size: 19px;">Traveling the world and visiting iconic landmarks is my biggest dream.</p>
     </div>
     <div class="w3-col l4 m12">
-      <img src="Pictures/AIR.jpg" class="w3-image" style="width:150%; max-width:500px">
+      <img src="Pictures/AIR.jpg" class="w3-image" style="width:100%">
     </div>
   </div>
 </div>
 
 <footer class="w3-container w3-black w3-padding-32 w3-center">
-  <p style="font-size: 19px;">Thank you for visiting my website</p>
+  <p>Thank you for visiting my website</p>
+  <button class="w3-button w3-white w3-margin-top" onclick="heartReact(this)">❤️ LOVE</button>
 </footer>
 
 <script>
-function openSidebar() {
-  document.getElementById("mySidebar").style.display = "block";
-}
-function closeSidebar() {
-  document.getElementById("mySidebar").style.display = "none";
-}
+function openSidebar() { document.getElementById("mySidebar").style.display = "block"; }
+function closeSidebar() { document.getElementById("mySidebar").style.display = "none"; }
 function scrollToSection(id) {
   closeSidebar();
   document.getElementById(id).scrollIntoView({ behavior: "smooth" });
