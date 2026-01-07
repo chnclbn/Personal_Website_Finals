@@ -10,11 +10,17 @@
 
 .hero-content {
   text-align: center;
-  width: 100%;           
-  display: flex;         
-  flex-direction: column; 
-  align-items: center;    
-  position: relative;     
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.hero-image-container {
+  position: relative;
+  margin: 0 auto;
+  width: fit-content;
 }
 
 .arch-svg {
@@ -33,18 +39,8 @@
   fill: black;
 }
 
-.hero-image-container {
-  position: relative;
-}
-
-.hero-image-container img {
-  width: 320px;
-  max-width: 90%;
-}
-
-
 .oval-frame {
-  max-width: 220px;   
+  max-width: 180px;   
   margin: auto;
   border-radius: 50% / 60%;
   overflow: hidden;
@@ -53,4 +49,5 @@
 .oval-frame img {
   width: 100%;
   display: block;
+  height: auto;      
 }
