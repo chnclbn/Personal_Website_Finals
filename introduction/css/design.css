@@ -1,20 +1,19 @@
-
 .hero-image-container img {
-  width: 250px;       
-  max-width: 80%;    
+  width: 250px;
+  max-width: 80%;
   height: auto;
-  border-radius: 20px; 
+  border-radius: 20px;
   display: block;
+  margin: 20px auto;
 }
 
-
 .oval-frame {
-  max-width: 180px;   
-  width: 100%;        
+  width: 180px;
+  max-width: 90%;
   margin: 0 auto 20px auto;
   border-radius: 50% / 60%;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15); 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   transition: transform 0.3s ease;
 }
 
@@ -25,22 +24,15 @@
   transition: transform 0.3s ease;
 }
 
-
 .oval-frame:hover img {
   transform: scale(1.05);
 }
-
 
 @media screen and (max-width: 768px) {
   .hero-image-container img {
     width: 180px;
   }
-
-  .arch-svg {
-    width: 90%;
-  }
-
   .oval-frame {
-    max-width: 150px;
+    width: 140px;
   }
 }
