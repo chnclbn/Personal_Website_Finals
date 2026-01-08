@@ -1,4 +1,3 @@
-
 body, h1, h2, h3, h4, h5, h6 {
   font-family: "Oswald", sans-serif;
 }
@@ -8,7 +7,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
 
 .portfolio-hero {
   min-height: 100vh;
@@ -30,7 +28,6 @@ body {
   border: 4px solid white;
 }
 
-
 .about-img {
   width: 100%;
   max-width: 320px;
@@ -41,64 +38,52 @@ body {
   margin: 0 auto;
 }
 
-
-.gallery {
+#hobbies .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   max-width: 1100px;
   margin: auto;
   padding: 0 15px;
 }
 
-.gallery-item {
+#hobbies .gallery-item {
   background-color: #ffffff;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
-
-.gallery-item:hover {
-  transform: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-}
-
-.gallery-item img {
+#hobbies .gallery-item img {
   width: 100%;
-  height: 220px;       
-  object-fit: cover;  
+  height: 230px;
+  object-fit: cover;
   display: block;
 }
 
-
-.desc {
+#hobbies .desc {
   padding: 12px;
   text-align: center;
   font-size: 14px;
-  font-family: "Open Sans", sans-serif;
   color: #333;
 }
-
 
 .w3-image {
   border-radius: 10px;
 }
 
-
 button {
   cursor: pointer;
 }
 
-
-@media (max-width: 768px) {
-  .desc {
-    font-size: 13px;
+@media (max-width: 900px) {
+  #hobbies .gallery {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 480px) {
-  .gallery {
-    gap: 15px;
+@media (max-width: 500px) {
+  #hobbies .gallery {
+    grid-template-columns: 1fr;
   }
 }
