@@ -1,4 +1,3 @@
-
 .portfolio-hero {
   min-height: 100vh;
   background: #f0f0f0;
@@ -88,34 +87,57 @@
   margin: 0 auto;
 }
 
+.hobby-section {
+  padding: 20px 0;
+}
+
 .phone-grid {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 40px;
 }
 
 .phone-card {
-  flex: 1 1 180px;
-  max-width: 200px;
-  height: 120px;
-  overflow: hidden;
-  border-radius: 8px;
+  width: 160px;
+  height: 300px;
+  border: 4px solid #e0e0e0;
+  border-radius: 25px;
+  padding: 5px;
+  background-color: white;
+  position: relative;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.phone-card:hover {
+  transform: translateY(-5px);
 }
 
 .phone-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  border-radius: 20px;
+  filter: brightness(0.9);
 }
 
-/* Taller cards for K-dramas and K-pop */
-.phone-card.tall img {
-  height: 140px;
+.phone-card::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0; 
+  height: 0; 
+  border-left: 25px solid white;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+  pointer-events: none;
 }
 
-/* MEDIA QUERIES */
 @media screen and (max-width: 1024px) {
   .hero-image-container {
     width: 220px;
