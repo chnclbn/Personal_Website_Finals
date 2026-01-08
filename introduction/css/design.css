@@ -1,6 +1,14 @@
 
-body, h1, h2, h3, h4, h5, h6 { font-family: "Oswald", sans-serif; }
-body { font-family: "Open Sans", sans-serif; }
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: "Oswald", sans-serif;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 
 .portfolio-hero {
   min-height: 100vh;
@@ -35,50 +43,62 @@ body { font-family: "Open Sans", sans-serif; }
 
 
 .gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  padding: 0 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 15px;
 }
 
 .gallery-item {
-  border: 1px solid #ccc;
-  background-color: white;
-  width: calc(25% - 15px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
+
 .gallery-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  transform: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
 .gallery-item img {
   width: 100%;
-  height: 250px;       
-  object-fit: cover;   
+  height: 220px;       
+  object-fit: cover;  
   display: block;
 }
 
+
 .desc {
-  padding: 15px;
+  padding: 12px;
   text-align: center;
+  font-size: 14px;
   font-family: "Open Sans", sans-serif;
-  font-size: 15px;
   color: #333;
 }
 
 
-@media only screen and (max-width: 900px) {
-  .gallery-item {
-    width: calc(50% - 15px);
+.w3-image {
+  border-radius: 10px;
+}
+
+
+button {
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .desc {
+    font-size: 13px;
   }
 }
 
-@media only screen and (max-width: 600px) {
-  .gallery-item {
-    width: 100%;
+@media (max-width: 480px) {
+  .gallery {
+    gap: 15px;
   }
 }
