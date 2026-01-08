@@ -38,34 +38,11 @@ body {
   margin: 0 auto;
 }
 
-#hobbies .gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  max-width: 1100px;
-  margin: auto;
-  padding: 0 15px;
-}
-
-#hobbies .gallery-item {
-  background-color: #ffffff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-}
-
-#hobbies .gallery-item img {
+.hobby-img {
   width: 100%;
-  height: 230px;
+  height: 240px;
   object-fit: cover;
   display: block;
-}
-
-#hobbies .desc {
-  padding: 12px;
-  text-align: center;
-  font-size: 14px;
-  color: #333;
 }
 
 .w3-image {
@@ -74,16 +51,4 @@ body {
 
 button {
   cursor: pointer;
-}
-
-@media (max-width: 900px) {
-  #hobbies .gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 500px) {
-  #hobbies .gallery {
-    grid-template-columns: 1fr;
-  }
 }
