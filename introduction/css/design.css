@@ -1,32 +1,79 @@
+
 body, h1, h2, h3, h4, h5, h6 { font-family: "Oswald", sans-serif; }
 body { font-family: "Open Sans", sans-serif; }
 
-.hobby-section { padding: 20px 0; }
 
-.phone-grid {
+.portfolio-hero {
+  min-height: 100vh;
+  background: #f4f4f4;
   display: flex;
+  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 40px;
+  text-align: center;
 }
 
-.phone-card {
-  width: 160px;
-  height: 300px;
-  border: 4px solid #e0e0e0;
-  border-radius: 25px;
-  background: white;
-  position: relative;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  overflow: hidden;
+.hero-image {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  border: 4px solid white;
+}
+
+
+.about-img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  display: block;
+  margin: 0 auto;
+}
+
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.gallery-item {
+  margin: 5px;
+  border: 1px solid #ccc;
+  width: calc(25% - 20px);
   transition: transform 0.3s;
 }
 
-.phone-card:hover { transform: translateY(-5px); }
+.gallery-item:hover {
+  border: 1px solid #777;
+  transform: translateY(-5px);
+}
 
-.phone-card img {
+.gallery-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+}
+
+.gallery-item .desc {
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .gallery-item {
+    width: calc(50% - 20px);
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .gallery-item {
+    width: calc(100% - 20px);
+  }
 }
