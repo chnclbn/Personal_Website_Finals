@@ -1,3 +1,4 @@
+
 .portfolio-hero {
   min-height: 100vh;
   background: #f0f0f0;
@@ -14,15 +15,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
+
 
 .hero-image-container {
   position: relative;
   width: 260px;
   max-width: 90%;
-  margin-top: 120px; 
+  margin-top: 120px;
   text-align: center;
 }
+
 
 .arch-svg {
   position: absolute;
@@ -44,17 +48,19 @@
   text-transform: uppercase;
 }
 
+
 .hero-image-container img {
-  max-width: 180px;   
+  max-width: 180px;
   height: auto;
-  border-radius: 14px;
+  border-radius: 50%; 
   display: block;
-  margin: 0 auto;     
+  margin: 0 auto;
   object-fit: cover;
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
   z-index: 2;
   position: relative;
 }
+
 
 .by-line {
   position: absolute;
@@ -78,17 +84,69 @@
   font-weight: 300;
 }
 
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 1024px) {
   .hero-image-container {
     width: 220px;
     margin-top: 100px;
   }
 
   .arch-svg text {
-    font-size: 34px;
+    font-size: 36px;
   }
 
   .hero-image-container img {
-    max-width: 150px; /* smaller on mobile */
+    max-width: 160px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero-image-container {
+    width: 180px;
+    margin-top: 80px;
+  }
+
+  .arch-svg text {
+    font-size: 28px;
+  }
+
+  .hero-image-container img {
+    max-width: 140px;
+  }
+
+  .by-line {
+    padding: 6px 18px;
+  }
+
+  .by-line span {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-image-container {
+    width: 150px;
+    margin-top: 60px;
+  }
+
+  .arch-svg {
+    width: 200%;
+    top: -80px;
+  }
+
+  .arch-svg text {
+    font-size: 22px;
+  }
+
+  .hero-image-container img {
+    max-width: 120px;
+  }
+
+  .by-line {
+    padding: 5px 15px;
+  }
+
+  .by-line span {
+    font-size: 11px;
   }
 }
