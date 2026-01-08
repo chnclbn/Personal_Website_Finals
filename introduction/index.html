@@ -51,7 +51,7 @@
     </div>
 
     <div class="header-image">
-      <img src="Pictures/Image (3).jpg" alt="Chelsea Portfolio style="width:100%">
+      <img src="Pictures/Image (3).jpg" alt="Chelsea Portfolio">
     </div>
   </div>
 </header>
@@ -213,12 +213,14 @@
   <button class="w3-button w3-white w3-margin-top" onclick="heartReact(this)">❤️ LOVE</button>
 </footer>
 
-<script>
-function heartReact(btn) {
-  btn.innerHTML = "❤️ Loved";
-  btn.style.fontWeight = "bold";
-}
-</script>
+<div id="app">
+  <button @click="heartReact" :style="{ fontWeight: isLoved ? 'bold' : 'normal' }">
+    {{ isLoved ? '❤️ Loved' : '🤍 Love' }}
+  </button>
+</div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="js/vue.js"></script>
 
 </body>
 </html>
