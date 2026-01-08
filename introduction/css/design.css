@@ -1,74 +1,81 @@
+
 .portfolio-hero {
   min-height: 100vh;
-  background: #ffffff;
+  background: #f0f0f0; 
   display: flex;
-  align-items: flex-end;
+  align-items: center; 
   justify-content: center;
-  padding-bottom: 40px;
   position: relative;
-}
-
-.hero-content {
-  text-align: center;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
+  overflow: hidden; 
 }
 
 
 .hero-image-container {
-  text-align: center;
-  margin: 0 auto;
+  position: relative; 
+  width: 300px;       
+  max-width: 90%;
+  margin-top: 50px; 
 }
 
 .hero-image-container img {
-  width: 220px !important;
-  max-width: 90%;
+  width: 100%;       
   height: auto;
-  border-radius: 20px;
-  display: inline-block;
-  margin: 20px auto;
+  border-radius: 10px; 
+  display: block;
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
 }
 
-.oval-frame {
-  width: 140px !important;
-  height: auto !important;
-  margin: 0 auto 20px auto;
-  border-radius: 50% / 60%;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-.oval-frame img {
-  width: 100% !important;
-  height: auto !important;
-  display: block !important;
-}
 
 .arch-svg {
   position: absolute;
-  top: 25%;
+  top: -100px; 
   left: 50%;
   transform: translateX(-50%);
-  width: 520px;
-  max-width: 90%;
+  width: 160%; 
+  height: auto;
+  z-index: 0; 
+  pointer-events: none; 
 }
 
 .arch-svg text {
   font-family: "Oswald", sans-serif;
-  font-size: 32px;
-  letter-spacing: 6px;
-  fill: black;
+  font-size: 45px; 
+  font-weight: bold;
+  letter-spacing: 4px;
+  fill: #1a1a1a; 
+  text-transform: uppercase;
 }
 
-/* Responsive */
+
+.by-line {
+  position: absolute;
+  bottom: 20px; 
+  left: 50%;
+  transform: translateX(-50%);
+  
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background-color: rgba(0, 0, 0, 0.3); 
+  backdrop-filter: blur(5px); 
+  padding: 8px 25px;
+  border-radius: 50px; 
+  white-space: nowrap;
+}
+
+.by-line span {
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+
+
 @media screen and (max-width: 768px) {
-  .hero-image-container img {
-    width: 180px !important;
+  .hero-image-container {
+    width: 250px;
   }
-  .oval-frame {
-    width: 120px !important;
+  .arch-svg text {
+    font-size: 38px; 
   }
 }
