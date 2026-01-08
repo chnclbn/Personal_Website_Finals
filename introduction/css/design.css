@@ -1,88 +1,98 @@
 
 .portfolio-hero {
   min-height: 100vh;
-  background: #f0f0f0; 
+  background: #f0f0f0;
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
   position: relative;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 
 .hero-image-container {
-  position: relative; 
-  width: 300px;       
+  position: relative;
+  width: 260px;              
   max-width: 90%;
-  margin-top: 50px; 
+  margin-top: 60px;
+  text-align: center;
 }
 
+
 .hero-image-container img {
-  width: 100%;       
+  width: 100%;
   height: auto;
-  border-radius: 10px; 
+  border-radius: 14px;
   display: block;
   object-fit: cover;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 
 .arch-svg {
   position: absolute;
-  top: -100px; 
+  top: -90px;
   left: 50%;
   transform: translateX(-50%);
-  width: 160%; 
+  width: 160%;
   height: auto;
-  z-index: 0; 
-  pointer-events: none; 
+  z-index: 0;
+  pointer-events: none;
 }
 
 .arch-svg text {
   font-family: "Oswald", sans-serif;
-  font-size: 45px; 
+  font-size: 42px;
   font-weight: bold;
   letter-spacing: 4px;
-  fill: #1a1a1a; 
+  fill: #1a1a1a;
   text-transform: uppercase;
 }
 
 
 .by-line {
   position: absolute;
-  bottom: 20px; 
+  bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
-  
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  background-color: rgba(0, 0, 0, 0.3); 
-  backdrop-filter: blur(5px); 
-  padding: 8px 25px;
-  border-radius: 50px; 
+  padding: 8px 22px;
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   white-space: nowrap;
 }
 
 .by-line span {
   color: white;
   font-family: "Open Sans", sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 1px;
   font-weight: 300;
 }
 
+
 .about-img {
   width: 100%;
-  max-width: 180px;  
+  max-width: 180px;        
   height: auto;
   border-radius: 20px;
   object-fit: cover;
+  margin: 0 auto;
+  display: block;
 }
 
+/* ===== RESPONSIVE ===== */
 @media screen and (max-width: 768px) {
   .hero-image-container {
-    width: 250px;
+    width: 220px;
   }
+
   .arch-svg text {
-    font-size: 38px; 
+    font-size: 34px;
+  }
+
+  .about-img {
+    max-width: 160px;
   }
 }
