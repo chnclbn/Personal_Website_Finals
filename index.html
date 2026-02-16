@@ -14,12 +14,14 @@
   <style>
     html { scroll-behavior: smooth; }
     .social-icons i { color: black !important; margin-right: 20px; font-size: 28px; }
-    .section-padding { padding: 100px 16px; }
-    .edu-img { border-radius: 15px; width: 100%; height: auto; object-fit: cover; max-height: 500px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-    .hobby-img { border-radius: 15px; transition: 0.3s; width: 100%; object-fit: cover; height: 400px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+    
+    .section-padding { padding: 80px 16px; }
+    
+    .standard-img { border-radius: 15px; width: 100%; height: auto; object-fit: contain; max-height: 450px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .hobby-img { border-radius: 15px; width: 100%; height: 350px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     [v-cloak] { display: none; }
-    .nav-link { background-color: transparent !important; color: white !important; }
-    .nav-link:hover { background-color: #616161 !important; color: white !important; }
+    
+    .w3-bar-item { font-size: 18px !important; }
   </style>
 </head>
 <body>
@@ -32,24 +34,26 @@
       <a href="#about" class="w3-bar-item w3-button">About</a>
       <a href="#education" class="w3-bar-item w3-button">Education</a>
       <a href="#goals" class="w3-bar-item w3-button">Goals</a>
-      <a href="#rate-section" class="w3-bar-item w3-button nav-link">Rate Me</a>
+      <a href="#rate-section" class="w3-bar-item w3-button">Rate Me</a>
     </div>
   </div>
 </div>
 
 <header id="home" class="w3-container section-padding w3-white">
-  <div class="w3-row-padding" style="display:flex; align-items:center; flex-wrap:wrap;">
-    <div class="w3-col l7 m12">
-      <h1 class="w3-xxxlarge"><b>Chelsea Portfolio</b></h1>
-      <p style="font-size: 24px;">by Chelsea Hillary M. Nacalaban</p>
-      <div class="w3-margin-top social-icons">
-        <a href="https://www.facebook.com/share/1AY7KW44ke/" target="_blank"><i class="fa fa-facebook-official"></i></a>
-        <a href="https://www.instagram.com/chelsxe" target="_blank"><i class="fa fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/in/chelsea-hillary-nacalaban-116a70241/" target="_blank"><i class="fa fa-linkedin"></i></a>
+  <div class="w3-content" style="max-width:1200px">
+    <div class="w3-row-padding" style="display:flex; align-items:center; flex-wrap:wrap;">
+      <div class="w3-col l7 m12">
+        <h1 class="w3-xxxlarge"><b>Chelsea Portfolio</b></h1>
+        <p class="w3-xlarge">by Chelsea Hillary M. Nacalaban</p>
+        <div class="w3-margin-top social-icons">
+          <a href="https://www.facebook.com/share/1AY7KW44ke/" target="_blank"><i class="fa fa-facebook-official"></i></a>
+          <a href="https://www.instagram.com/chelsxe" target="_blank"><i class="fa fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/chelsea-hillary-nacalaban-116a70241/" target="_blank"><i class="fa fa-linkedin"></i></a>
+        </div>
       </div>
-    </div>
-    <div class="w3-col l5 m12 w3-center">
-      <img src="Pictures/Image (3).jpg" class="w3-image" style="width:100%; max-width:600px; border-radius:20px;">
+      <div class="w3-col l5 m12 w3-center">
+        <img src="Pictures/Image (3).jpg" class="w3-image" style="width:100%; max-width:600px; border-radius:20px;">
+      </div>
     </div>
   </div>
 </header>
@@ -59,19 +63,19 @@
     <div class="w3-row-padding" style="display: flex; align-items: center; flex-wrap: wrap;">
       <div class="w3-col l4 m12">
         <h2 class="w3-xxlarge"><b>Education</b></h2>
-        <p style="font-size: 22px; line-height: 1.6;">
+        <p class="w3-xlarge" style="line-height: 1.6;">
           Currently taking <b>BS Computer Science</b> specializing in <b>Cybersecurity and Forensics</b> at Asia Pacific College.
         </p>
       </div>
       <div class="w3-col l8 m12">
         <div class="w3-row-padding">
-          <div class="w3-half w3-center w3-margin-bottom">
-            <img src="Pictures/Chel1.jpg" class="edu-img">
-            <p style="font-size: 18px;"><b>Sto Niño Catholic School</b></p>
+          <div class="w3-half w3-center">
+            <img src="Pictures/Chel1.jpg" class="standard-img">
+            <p class="w3-large"><b>Sto Niño Catholic School</b></p>
           </div>
-          <div class="w3-half w3-center w3-margin-bottom">
-            <img src="Pictures/Chel2.jpg" class="edu-img">
-            <p style="font-size: 18px;"><b>Asia Pacific College (STEM)</b></p>
+          <div class="w3-half w3-center">
+            <img src="Pictures/Chel2.jpg" class="standard-img">
+            <p class="w3-large"><b>Asia Pacific College (STEM)</b></p>
           </div>
         </div>
       </div>
@@ -84,7 +88,7 @@
     <div class="w3-row-padding" style="display: flex; align-items: center; flex-wrap: wrap;">
       <div class="w3-col l5 m12">
         <h2 class="w3-xxlarge"><b>Goals & Dreams</b></h2>
-        <p style="font-size: 22px; line-height: 1.6;">
+        <p class="w3-xlarge" style="line-height: 1.6;">
           My priority is <b>graduating with my Bachelor’s degree</b>. Having a good job in the tech industry will be my gateway to achieve my goal of <b>traveling around the world</b>.
         </p>
       </div>
@@ -100,14 +104,15 @@
 </div>
 
 <div id="rate-section" class="w3-container section-padding w3-white">
-  <div id="app" v-cloak class="w3-content" style="max-width:1000px">
+  <div id="app" v-cloak class="w3-content" style="max-width:1100px">
     <h2 class="w3-center w3-xxlarge"><b>Rate My Portfolio</b></h2>
     <div class="w3-row-padding w3-margin-top">
-      <div class="w3-col m5">
-        <div class="w3-card-4 w3-padding w3-white w3-round" style="padding: 30px !important;">
-          <label style="font-size: 18px;"><i class="fa fa-user"></i> Name</label>
+      <div class="w3-col l5 m12">
+        <div class="w3-card-4 w3-padding w3-white w3-round" style="padding: 40px !important;">
+          <label class="w3-large"><i class="fa fa-user"></i> Name</label>
           <input class="w3-input w3-border w3-margin-bottom" type="text" v-model="newName" placeholder="Your Name">
-          <label style="font-size: 18px;"><i class="fa fa-star"></i> Rating</label>
+          
+          <label class="w3-large"><i class="fa fa-star"></i> Rating</label>
           <select class="w3-select w3-border w3-margin-bottom" v-model="newRating">
             <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
             <option value="4">⭐⭐⭐⭐ Great</option>
@@ -115,16 +120,18 @@
             <option value="2">⭐⭐ Fair</option>
             <option value="1">⭐ Poor</option>
           </select>
-          <label style="font-size: 18px;"><i class="fa fa-pencil"></i> Remarks</label>
-          <textarea class="w3-input w3-border" v-model="newComment" placeholder="Write feedback..." style="height: 120px;"></textarea>
-          <button class="w3-button w3-black w3-block w3-margin-top w3-round w3-large" @click="submitFeedback">Submit Feedback</button>
+
+          <label class="w3-large"><i class="fa fa-pencil"></i> Remarks</label>
+          <textarea class="w3-input w3-border" v-model="newComment" placeholder="Write feedback..." style="height: 150px;"></textarea>
+          
+          <button class="w3-button w3-black w3-block w3-margin-top w3-round w3-xlarge" @click="submitFeedback">Submit Feedback</button>
         </div>
       </div>
-      <div class="w3-col m7">
+      <div class="w3-col l7 m12">
         <h3 class="w3-xlarge">Recent Remarks</h3>
         <div v-for="item in feedbackList" :key="item.id" class="w3-panel w3-leftbar w3-border-black w3-light-grey w3-padding-large w3-margin-bottom">
-          <p style="font-size: 18px;"><strong>{{ item.name }}</strong> ({{ item.rating }}/5)</p>
-          <p style="font-size: 16px;"><i>"{{ item.comment }}"</i></p>
+          <p class="w3-large"><strong>{{ item.name }}</strong> ({{ item.rating }}/5)</p>
+          <p class="w3-medium"><i>"{{ item.comment }}"</i></p>
         </div>
       </div>
     </div>
@@ -132,7 +139,7 @@
 </div>
 
 <footer class="w3-container w3-black w3-padding-32 w3-center">
-  <p style="font-size: 18px;">Thank you for visiting my website, Chelsea Hillary M. Nacalaban</p>
+  <p class="w3-large">Thank you for visiting my website, Chelsea Hillary M. Nacalaban</p>
 </footer>
 
 <script>
@@ -147,16 +154,24 @@
       const newRating = ref('5');
       const newComment = ref('');
       const feedbackList = ref([]);
+
       const fetchFeedback = async () => {
         const { data } = await supabase.from('comments').select('*').order('id', { ascending: false });
         feedbackList.value = data || [];
       };
+
       const submitFeedback = async () => {
         if (!newName.value || !newComment.value) { alert('Please fill all fields!'); return; }
-        const { error } = await supabase.from('comments').insert([{ name: newName.value, rating: parseInt(newRating.value), comment: newComment.value }]);
+        const { error } = await supabase.from('comments').insert([{ 
+          name: newName.value, 
+          rating: parseInt(newRating.value), 
+          comment: newComment.value 
+        }]);
         if (!error) { newName.value = ''; newComment.value = ''; fetchFeedback(); }
       };
+
       onMounted(fetchFeedback);
+
       return { newName, newRating, newComment, feedbackList, submitFeedback };
     }
   }).mount('#app');
