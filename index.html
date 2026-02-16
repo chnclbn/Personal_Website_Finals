@@ -167,19 +167,7 @@ const { createApp, ref, onMounted } = Vue;
 const supabaseUrl = 'https://oukjcvftqmasquxoypbp.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91a2pjdmF0cW1hc3F1eG95cGJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4MTE1MDQsImV4cCI6MjA4NjM4NzUwNH0.iZT3dEZ8Iuuxgt1k_8L-xf9Mo7xJoYQ-bgrBz3OVPZ0';
 
-
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
-
-function heartReact(button) {
-  if (button.innerHTML === '❤️ LOVE') {
-    button.innerHTML = '💖 LOVED!';
-    button.style.backgroundColor = '#ff69b4'; 
-  } else {
-    button.innerHTML = '❤️ LOVE';
-    button.style.backgroundColor = ''; 
-  }
-}
 
 createApp({
   setup() {
@@ -189,6 +177,7 @@ createApp({
     const feedbackList = ref([]);
 
     const fetchFeedback = async () => {
+      console.log("Fetching feedback...");
       try {
         const { data, error } = await supabase
           .from('comments')
@@ -199,6 +188,7 @@ createApp({
           console.error("FETCH ERROR:", error);
           alert("Failed to load feedback. Check console for details.");
         } else {
+          console.log("Fetched data:", data);
           feedbackList.value = data;
         }
       } catch (err) {
@@ -207,6 +197,7 @@ createApp({
     };
 
     const submitFeedback = async () => {
+      console.log("Submitting feedback...");
       if (!newName.value.trim() || !newComment.value.trim()) {
         alert("Please fill in your name and remarks.");
         return;
@@ -227,18 +218,22 @@ createApp({
           console.error("INSERT ERROR:", error);
           alert("Failed to submit feedback. Check console for details.");
         } else {
+          console.log("Submission successful");
           alert("Thank you for your feedback!");
           newName.value = '';
           newComment.value = '';
           newRating.value = '5';
-          await fetchFeedback(); 
+          await fetchFeedback(); // Refresh the list
         }
       } catch (err) {
         console.error("Unexpected error submitting feedback:", err);
       }
     };
 
-    onMounted(fetchFeedback);
+    onMounted(() => {
+      console.log("App mounted, fetching feedback...");
+      fetchFeedback();
+    });
 
     return {
       newName,
