@@ -120,14 +120,14 @@
   </div>
 </div>
 
-<!-- Replaced the rate-section with your provided snippet (corrected for syntax errors) -->
+
 <div id="rate-section" class="w3-container w3-padding-64 w3-light-grey">
   <div id="app" class="w3-content" style="max-width:600px">
     <h2 class="w3-center"><b>Rate My Portfolio</b></h2>
 
-    <div class="w3-card-4 w3-padding w3-white w3-round">
+ <div class="w3-card-4 w3-padding w3-white w3-round">
       <label>Name</label>
-      <input class="w3-input w3-border" type="text" v-model="newName">
+      <input class="w3-input w3-border" type="text" v-model="newName" placeholder="Your Name">
 
       <label>Rating (1-5)</label>
       <select class="w3-select w3-border" v-model="newRating">
@@ -139,7 +139,7 @@
       </select>
 
       <label>Remarks</label>
-      <textarea class="w3-input w3-border" v-model="newComment"></textarea>
+      <textarea class="w3-input w3-border" v-model="newComment" placeholder="Feedback..."></textarea>
 
       <button class="w3-button w3-black w3-margin-top w3-block" @click="submitFeedback">
         Submit Feedback
@@ -148,7 +148,7 @@
 
     <div class="w3-margin-top">
       <h3>Recent Remarks</h3>
-      <div v-for="item in feedbackList" :key="item.id" class="w3-panel w3-leftbar w3-light-grey w3-padding">
+      <div v-for="item in feedbackList" :key="item.id" class="w3-panel w3-leftbar w3-white w3-padding">
         <p><strong>{{ item.name }}</strong> ({{ item.rating }}/5)</p>
         <p><i>"{{ item.comment }}"</i></p>
       </div>
@@ -157,8 +157,7 @@
 </div>
 
 <footer class="w3-container w3-black w3-padding-32 w3-center">
-  <p>Thank you for visiting my website</p>
-  <button class="w3-button w3-white w3-margin-top" onclick="heartReact(this)">❤️ LOVE</button>
+  <p>Thank you for visiting my website, Chelsea Hillary M. Nacalaban</p>
 </footer>
 
 <script>
@@ -167,7 +166,7 @@ const { createApp, ref, onMounted } = Vue;
 const supabaseUrl = 'https://oukjcvftqmasquxoypbp.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91a2pjdmF0cW1hc3F1eG95cGJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4MTE1MDQsImV4cCI6MjA4NjM4NzUwNH0.iZT3dEZ8Iuuxgt1k_8L-xf9Mo7xJoYQ-bgrBz3OVPZ0';
 
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+const supabase = supabasejs.createClient(supabaseUrl, supabaseKey);
 
 createApp({
   setup() {
@@ -177,27 +176,21 @@ createApp({
     const feedbackList = ref([]);
 
     const fetchFeedback = async () => {
-      console.log("Fetching feedback...");
       try {
         const { data, error } = await supabase
           .from('comments')
           .select('*')
           .order('id', { ascending: false });
 
-        if (error) {
-          console.error("FETCH ERROR:", error);
-          alert("Failed to load feedback. Check console for details.");
-        } else {
-          console.log("Fetched data:", data);
+        if (!error) {
           feedbackList.value = data;
         }
       } catch (err) {
-        console.error("Unexpected error fetching feedback:", err);
+        console.error("Error fetching feedback:", err);
       }
     };
 
     const submitFeedback = async () => {
-      console.log("Submitting feedback...");
       if (!newName.value.trim() || !newComment.value.trim()) {
         alert("Please fill in your name and remarks.");
         return;
@@ -215,25 +208,19 @@ createApp({
           ]);
 
         if (error) {
-          console.error("INSERT ERROR:", error);
-          alert("Failed to submit feedback. Check console for details.");
+          alert("Failed to submit. Check console.");
         } else {
-          console.log("Submission successful");
-          alert("Thank you for your feedback!");
           newName.value = '';
           newComment.value = '';
           newRating.value = '5';
-          await fetchFeedback(); // Refresh the list
+          await fetchFeedback(); 
         }
       } catch (err) {
-        console.error("Unexpected error submitting feedback:", err);
+        console.error("Submission error:", err);
       }
     };
 
-    onMounted(() => {
-      console.log("App mounted, fetching feedback...");
-      fetchFeedback();
-    });
+    onMounted(fetchFeedback);
 
     return {
       newName,
