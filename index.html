@@ -14,9 +14,12 @@
   <style>
     html { scroll-behavior: smooth; }
     .social-icons i { color: black !important; margin-right: 15px; }
+    .edu-img { border-radius: 15px; width: 100%; height: auto; object-fit: contain; max-height: 400px; transition: 0.3s; }
     .hobby-img { border-radius: 15px; transition: 0.3s; width: 100%; object-fit: cover; height: 350px; }
     .hobby-img:hover { transform: scale(1.05); }
     [v-cloak] { display: none; }
+    .nav-btn { background-color: transparent !important; color: white !important; }
+    .nav-btn:hover { background-color: #ddd !important; color: black !important; }
   </style>
 </head>
 <body>
@@ -29,7 +32,7 @@
       <a href="#about" class="w3-bar-item w3-button">About</a>
       <a href="#education" class="w3-bar-item w3-button">Education</a>
       <a href="#goals" class="w3-bar-item w3-button">Goals</a>
-      <a href="#rate-me" class="w3-bar-item w3-button w3-white w3-text-black">Rate Me</a>
+      <a href="#rate-me" class="w3-bar-item w3-button nav-btn">Rate Me</a>
     </div>
   </div>
 </div>
@@ -70,17 +73,19 @@
 </div>
 
 <div class="w3-container w3-padding-64 w3-light-grey" id="education">
-  <div class="w3-row-padding">
-    <div class="w3-col l4 m12 w3-center">
-      <h2><b>Education</b></h2>
-      <p style="font-size: 20px;">
-        Currently taking <b>BS Computer Science</b> specializing in <b>Cybersecurity and Forensics</b> at APC.
-      </p>
-    </div>
-    <div class="w3-col l8 m12">
-      <div class="w3-row-padding">
-        <div class="w3-half w3-center"><img src="Pictures/Chel1.jpg" class="hobby-img"><p>Sto Niño Catholic School</p></div>
-        <div class="w3-half w3-center"><img src="Pictures/Chel2.jpg" class="hobby-img"><p>Asia Pacific College (STEM)</p></div>
+  <div class="w3-content" style="max-width:1100px">
+    <h2 class="w3-center"><b>Education</b></h2>
+    <p class="w3-center" style="font-size: 20px;">
+      Currently taking <b>BS Computer Science</b> specializing in <b>Cybersecurity and Forensics</b> at APC.
+    </p>
+    <div class="w3-row-padding w3-margin-top">
+      <div class="w3-half w3-center w3-margin-bottom">
+        <img src="Pictures/Chel1.jpg" class="edu-img">
+        <p>Sto Niño Catholic School</p>
+      </div>
+      <div class="w3-half w3-center w3-margin-bottom">
+        <img src="Pictures/Chel2.jpg" class="edu-img">
+        <p>Asia Pacific College (STEM)</p>
       </div>
     </div>
   </div>
@@ -120,6 +125,8 @@
             <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
             <option value="4">⭐⭐⭐⭐ Great</option>
             <option value="3">⭐⭐⭐ Good</option>
+            <option value="2">⭐⭐ Fair</option>
+            <option value="1">⭐ Poor</option>
           </select>
           <label><i class="fa fa-pencil"></i> Remarks</label>
           <textarea class="w3-input w3-border" v-model="newComment" placeholder="Write feedback..."></textarea>
@@ -144,7 +151,7 @@
 <script>
   const { createApp, ref, onMounted } = Vue;
   const supabaseUrl = 'https://oukjcvftqmasquxoypbp.supabase.co';
-  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91a2pjdmF0cW1hc3F1eG95cGJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4MTE1MDQsImV4cCI6MjA4NjM4NzUwNH0.iZT3dEZ8Iuuxgt1k_8L-xf9Mo7xJoYQ-bgrBz3OVPZ0';
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91a2pjdmZ0cW1hc3F1eG95cGJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4MTE1MDQsImV4cCI6MjA4NjM4NzUwNH0.iZT3dEZ8Iuuxgt1k_8L-xf9Mo7xJoYQ-bgrBz3OVPZ0';
   const supabase = supabasejs.createClient(supabaseUrl, supabaseKey);
 
   createApp({
