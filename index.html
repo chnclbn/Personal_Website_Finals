@@ -14,12 +14,9 @@
   <style>
     html { scroll-behavior: smooth; }
     .social-icons i { color: black !important; margin-right: 15px; }
-    .edu-img { border-radius: 15px; width: 100%; height: auto; object-fit: contain; max-height: 400px; transition: 0.3s; }
+    .edu-img { border-radius: 15px; width: 100%; height: auto; object-fit: contain; max-height: 380px; }
     .hobby-img { border-radius: 15px; transition: 0.3s; width: 100%; object-fit: cover; height: 350px; }
-    .hobby-img:hover { transform: scale(1.05); }
     [v-cloak] { display: none; }
-    .nav-btn { background-color: transparent !important; color: white !important; }
-    .nav-btn:hover { background-color: #ddd !important; color: black !important; }
   </style>
 </head>
 <body>
@@ -32,7 +29,7 @@
       <a href="#about" class="w3-bar-item w3-button">About</a>
       <a href="#education" class="w3-bar-item w3-button">Education</a>
       <a href="#goals" class="w3-bar-item w3-button">Goals</a>
-      <a href="#rate-me" class="w3-bar-item w3-button nav-btn">Rate Me</a>
+      <a href="#rate-section" class="w3-bar-item w3-button w3-white w3-text-black">Rate Me</a>
     </div>
   </div>
 </div>
@@ -61,31 +58,33 @@
     </div>
     <div class="w3-col m6 w3-padding-large">
       <h1 class="w3-center"><b>About Me</b></h1><br>
-      <h5 class="w3-center">Computer Science Student</h5>
       <p class="w3-large">
         Hi! I’m <strong>Chelsea Hillary M. Nacalaban</strong>, a Computer Science student specializing in <b>Forensics and Cyber Security</b> at Asia Pacific College. Exploring new ideas, designs, and innovations is something I really enjoy doing. 
-      </p>
-      <p class="w3-large w3-text-grey">
-        I love combining creativity and technology to create unique projects. Outside of coding, I am a huge fan of <b>Korean culture</b>, including K-dramas and K-pop, and I love <b>cafe hopping</b>.
       </p>
     </div>
   </div>
 </div>
 
 <div class="w3-container w3-padding-64 w3-light-grey" id="education">
-  <div class="w3-content" style="max-width:1100px">
-    <h2 class="w3-center"><b>Education</b></h2>
-    <p class="w3-center" style="font-size: 20px;">
-      Currently taking <b>BS Computer Science</b> specializing in <b>Cybersecurity and Forensics</b> at APC.
-    </p>
-    <div class="w3-row-padding w3-margin-top">
-      <div class="w3-half w3-center w3-margin-bottom">
-        <img src="Pictures/Chel1.jpg" class="edu-img">
-        <p>Sto Niño Catholic School</p>
+  <div class="w3-content" style="max-width:1200px">
+    <div class="w3-row-padding">
+      <div class="w3-col l4 m12">
+        <h2 class="w3-xxlarge"><b>Education</b></h2>
+        <p style="font-size: 18px; line-height: 1.6;">
+          Currently taking <b>BS Computer Science</b> specializing in <b>Cybersecurity and Forensics</b> at Asia Pacific College.
+        </p>
       </div>
-      <div class="w3-half w3-center w3-margin-bottom">
-        <img src="Pictures/Chel2.jpg" class="edu-img">
-        <p>Asia Pacific College (STEM)</p>
+      <div class="w3-col l8 m12">
+        <div class="w3-row-padding">
+          <div class="w3-half w3-center w3-margin-bottom">
+            <img src="Pictures/Chel1.jpg" class="edu-img">
+            <p><b>Sto Niño Catholic School</b></p>
+          </div>
+          <div class="w3-half w3-center w3-margin-bottom">
+            <img src="Pictures/Chel2.jpg" class="edu-img">
+            <p><b>Asia Pacific College (STEM)</b></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -98,9 +97,6 @@
       <p style="font-size: 19px;">
         My priority is <b>graduating with my Bachelor’s degree</b>. Having a good job in the tech industry will be my gateway to achieve my goal of <b>traveling around the world</b>.
       </p>
-      <p style="font-size: 19px;">
-        I am a firm believer in <b>collecting experiences rather than things</b>. I want to see world-famous landmarks and explore every culture in person.
-      </p>
     </div>
     <div class="w3-col l7 m12">
       <div class="w3-row-padding">
@@ -112,7 +108,7 @@
   </div>
 </div>
 
-<div id="rate-me" class="w3-container w3-padding-64 w3-light-grey">
+<div id="rate-section" class="w3-container w3-padding-64 w3-white">
   <div id="app" v-cloak class="w3-content" style="max-width:800px">
     <h2 class="w3-center"><b>Rate My Portfolio</b></h2>
     <div class="w3-row-padding">
@@ -135,7 +131,7 @@
       </div>
       <div class="w3-col m7">
         <h3>Recent Remarks</h3>
-        <div v-for="item in feedbackList" :key="item.id" class="w3-panel w3-leftbar w3-border-black w3-white w3-padding">
+        <div v-for="item in feedbackList" :key="item.id" class="w3-panel w3-leftbar w3-border-black w3-light-grey w3-padding">
           <p><strong>{{ item.name }}</strong> ({{ item.rating }}/5)</p>
           <p><i>"{{ item.comment }}"</i></p>
         </div>
@@ -151,7 +147,7 @@
 <script>
   const { createApp, ref, onMounted } = Vue;
   const supabaseUrl = 'https://oukjcvftqmasquxoypbp.supabase.co';
-  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91a2pjdmZ0cW1hc3F1eG95cGJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4MTE1MDQsImV4cCI6MjA4NjM4NzUwNH0.iZT3dEZ8Iuuxgt1k_8L-xf9Mo7xJoYQ-bgrBz3OVPZ0';
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91a2pjdmF0cW1hc3F1eG95cGJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4MTE1MDQsImV4cCI6MjA4NjM4NzUwNH0.iZT3dEZ8Iuuxgt1k_8L-xf9Mo7xJoYQ-bgrBz3OVPZ0';
   const supabase = supabasejs.createClient(supabaseUrl, supabaseKey);
 
   createApp({
