@@ -160,38 +160,76 @@
 </footer>
 
 <script>
-  const { createApp, ref, onMounted } = Vue;
-  const supabaseUrl = 'https://oukjcvftqmasquxoypbp.supabase.co';
-  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91a2pjdmF0cW1hc3F1eG95cGJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4MTE1MDQsImV4cCI6MjA4NjM4NzUwNH0.iZT3dEZ8Iuuxgt1k_8L-xf9Mo7xJoYQ-bgrBz3OVPZ0';
-  const supabase = supabasejs.createClient(supabaseUrl, supabaseKey);
+const { createApp, ref, onMounted } = Vue;
 
-  createApp({
-    setup() {
-      const newName = ref('');
-      const newRating = ref('5');
-      const newComment = ref('');
-      const feedbackList = ref([]);
+const supabaseUrl = 'https://oukjcvftqmasquxoypbp.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91a2pjdmF0cW1hc3F1eG95cGJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4MTE1MDQsImV4cCI6MjA4NjM4NzUwNH0.iZT3dEZ8Iuuxgt1k_8L-xf9Mo7xJoYQ-bgrBz3OVPZ0';
 
-      const fetchFeedback = async () => {
-        const { data } = await supabase.from('comments').select('*').order('id', { ascending: false });
-        feedbackList.value = data || [];
-      };
+const supabase = supabasejs.createClient(supabaseUrl, supabaseKey);
 
-      const submitFeedback = async () => {
-        if (!newName.value || !newComment.value) { alert('Please fill all fields!'); return; }
-        const { error } = await supabase.from('comments').insert([{ 
-          name: newName.value, 
-          rating: parseInt(newRating.value), 
-          comment: newComment.value 
-        }]);
-        if (!error) { newName.value = ''; newComment.value = ''; fetchFeedback(); }
-      };
+createApp({
+  setup() {
 
-      onMounted(fetchFeedback);
+    const newName = ref('');
+    const newRating = ref('5');
+    const newComment = ref('');
+    const feedbackList = ref([]);
 
-      return { newName, newRating, newComment, feedbackList, submitFeedback };
-    }
-  }).mount('#app');
+    const fetchFeedback = async () => {
+      const { data, error } = await supabase
+        .from('comments')
+        .select('*')
+        .order('id', { ascending: false });
+
+      if (error) {
+        console.error("FETCH ERROR:", error);
+      } else {
+        feedbackList.value = data;
+      }
+    };
+
+   
+    const submitFeedback = async () => {
+
+      if (!newName.value || !newComment.value) {
+        alert("Please fill all fields");
+        return;
+      }
+
+      const { error } = await supabase
+        .from('comments')
+        .insert([
+          {
+            name: newName.value,
+            rating: parseInt(newRating.value),
+            comment: newComment.value
+          }
+        ]);
+
+      if (error) {
+        console.error("INSERT ERROR:", error);
+        alert("Failed to submit.");
+      } else {
+        newName.value = '';
+        newComment.value = '';
+        newRating.value = '5';
+        await fetchFeedback(); 
+      }
+    };
+
+    
+    onMounted(fetchFeedback);
+
+    return {
+      newName,
+      newRating,
+      newComment,
+      feedbackList,
+      submitFeedback
+    };
+  }
+}).mount('#app');
 </script>
+
 </body>
 </html>
