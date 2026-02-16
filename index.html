@@ -12,6 +12,7 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
   <style>
+    html { scroll-behavior: smooth; }
     .social-icons i { color: black !important; margin-right: 15px; }
     .hobby-img { border-radius: 15px; transition: 0.3s; width: 100%; object-fit: cover; height: 350px; }
     .hobby-img:hover { transform: scale(1.05); }
@@ -28,7 +29,7 @@
       <a href="#about" class="w3-bar-item w3-button">About</a>
       <a href="#education" class="w3-bar-item w3-button">Education</a>
       <a href="#goals" class="w3-bar-item w3-button">Goals</a>
-      <a href="#app" class="w3-bar-item w3-button w3-white w3-text-black">Rate Me</a>
+      <a href="#rate-me" class="w3-bar-item w3-button w3-white w3-text-black">Rate Me</a>
     </div>
   </div>
 </div>
@@ -50,38 +51,48 @@
   </div>
 </header>
 
+<div class="w3-content" style="max-width:1100px" id="about">
+  <div class="w3-row w3-padding-64">
+    <div class="w3-col m6 w3-padding-large w3-center">
+      <img src="Pictures/Image (2).jpg" alt="Chelsea Hillary" class="w3-round w3-image" style="width:100%; max-width:500px; height:auto;">
+    </div>
+    <div class="w3-col m6 w3-padding-large">
+      <h1 class="w3-center"><b>About Me</b></h1><br>
+      <h5 class="w3-center">Computer Science Student</h5>
+      <p class="w3-large">
+        Hi! I’m <strong>Chelsea Hillary M. Nacalaban</strong>, a Computer Science student specializing in <b>Forensics and Cyber Security</b> at Asia Pacific College. Exploring new ideas, designs, and innovations is something I really enjoy doing. 
+      </p>
+      <p class="w3-large w3-text-grey">
+        I love combining creativity and technology to create unique projects. Outside of coding, I am a huge fan of <b>Korean culture</b>, including K-dramas and K-pop, and I love <b>cafe hopping</b>.
+      </p>
+    </div>
+  </div>
+</div>
+
 <div class="w3-container w3-padding-64 w3-light-grey" id="education">
   <div class="w3-row-padding">
     <div class="w3-col l4 m12 w3-center">
       <h2><b>Education</b></h2>
       <p style="font-size: 20px;">
-        <strong>College:</strong> Currently taking <b>BS Computer Science</b> specializing in <b>Cybersecurity and Forensics</b> at Asia Pacific College.
+        Currently taking <b>BS Computer Science</b> specializing in <b>Cybersecurity and Forensics</b> at APC.
       </p>
     </div>
     <div class="w3-col l8 m12">
       <div class="w3-row-padding">
-        <div class="w3-half w3-center">
-          <img src="Pictures/Chel1.jpg" class="hobby-img">
-          <p>Sto Niño Catholic School</p>
-        </div>
-        <div class="w3-half w3-center">
-          <img src="Pictures/Chel2.jpg" class="hobby-img">
-          <p>Asia Pacific College (STEM)</p>
-        </div>
+        <div class="w3-half w3-center"><img src="Pictures/Chel1.jpg" class="hobby-img"><p>Sto Niño Catholic School</p></div>
+        <div class="w3-half w3-center"><img src="Pictures/Chel2.jpg" class="hobby-img"><p>Asia Pacific College (STEM)</p></div>
       </div>
     </div>
   </div>
 </div>
 
 <div class="w3-container w3-padding-64 w3-dark-grey" id="goals">
-  <div class="w3-row-padding" style="display: flex; align-items: center; flex-wrap: wrap;">
+  <div class="w3-row-padding">
     <div class="w3-col l5 m12">
       <h2><b>Goals & Dreams</b></h2>
-      <div class="w3-panel w3-leftbar w3-border-white w3-padding-small">
-        <p style="font-size: 19px;">
-          My priority is <b>graduating with my Bachelor’s degree</b> and gaining strong knowledge and skills. Having a good job in the tech industry will be my gateway to achieve my goal of <b>traveling around the world</b>.
-        </p>
-      </div>
+      <p style="font-size: 19px;">
+        My priority is <b>graduating with my Bachelor’s degree</b>. Having a good job in the tech industry will be my gateway to achieve my goal of <b>traveling around the world</b>.
+      </p>
       <p style="font-size: 19px;">
         I am a firm believer in <b>collecting experiences rather than things</b>. I want to see world-famous landmarks and explore every culture in person.
       </p>
@@ -96,8 +107,8 @@
   </div>
 </div>
 
-<div id="app" v-cloak class="w3-container w3-padding-64 w3-light-grey">
-  <div class="w3-content" style="max-width:800px">
+<div id="rate-me" class="w3-container w3-padding-64 w3-light-grey">
+  <div id="app" v-cloak class="w3-content" style="max-width:800px">
     <h2 class="w3-center"><b>Rate My Portfolio</b></h2>
     <div class="w3-row-padding">
       <div class="w3-col m5">
