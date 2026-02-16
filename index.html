@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,12 +15,12 @@
   <style>
     html { scroll-behavior: smooth; }
     .social-icons i { color: black !important; margin-right: 20px; font-size: 28px; }
-    /* Standardized Sizing and Padding */
+
     .section-padding { padding: 100px 16px; }
     .standard-img { border-radius: 15px; width: 100%; height: auto; object-fit: contain; max-height: 450px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     .hobby-img { border-radius: 15px; width: 100%; height: 350px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     [v-cloak] { display: none; }
-    /* Reset Navigation Highlight */
+ 
     .nav-btn { background-color: transparent !important; color: white !important; }
     .nav-btn:hover { background-color: #616161 !important; color: white !important; }
   </style>
@@ -134,7 +135,7 @@
             <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
             <option value="4">⭐⭐⭐⭐ Great</option>
             <option value="3">⭐⭐⭐ Good</option>
-            <option value="2">⭐⭐ Fair</option>
+            <option value="2">⭐⭐⭐ Fair</option>
             <option value="1">⭐ Poor</option>
           </select>
 
@@ -165,59 +166,66 @@ const { createApp, ref, onMounted } = Vue;
 const supabaseUrl = 'https://oukjcvftqmasquxoypbp.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91a2pjdmF0cW1hc3F1eG95cGJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4MTE1MDQsImV4cCI6MjA4NjM4NzUwNH0.iZT3dEZ8Iuuxgt1k_8L-xf9Mo7xJoYQ-bgrBz3OVPZ0';
 
-const supabase = supabasejs.createClient(supabaseUrl, supabaseKey);
+
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 createApp({
   setup() {
-
     const newName = ref('');
     const newRating = ref('5');
     const newComment = ref('');
     const feedbackList = ref([]);
 
     const fetchFeedback = async () => {
-      const { data, error } = await supabase
-        .from('comments')
-        .select('*')
-        .order('id', { ascending: false });
+      try {
+        const { data, error } = await supabase
+          .from('comments')
+          .select('*')
+          .order('id', { ascending: false });
 
-      if (error) {
-        console.error("FETCH ERROR:", error);
-      } else {
-        feedbackList.value = data;
+        if (error) {
+          console.error("FETCH ERROR:", error);
+          alert("Failed to load feedback. Check console for details.");
+        } else {
+          feedbackList.value = data;
+        }
+      } catch (err) {
+        console.error("Unexpected error fetching feedback:", err);
       }
     };
 
-   
     const submitFeedback = async () => {
-
-      if (!newName.value || !newComment.value) {
-        alert("Please fill all fields");
+      if (!newName.value.trim() || !newComment.value.trim()) {
+        alert("Please fill in your name and remarks.");
         return;
       }
 
-      const { error } = await supabase
-        .from('comments')
-        .insert([
-          {
-            name: newName.value,
-            rating: parseInt(newRating.value),
-            comment: newComment.value
-          }
-        ]);
+      try {
+        const { error } = await supabase
+          .from('comments')
+          .insert([
+            {
+              name: newName.value.trim(),
+              rating: parseInt(newRating.value),
+              comment: newComment.value.trim()
+            }
+          ]);
 
-      if (error) {
-        console.error("INSERT ERROR:", error);
-        alert("Failed to submit.");
-      } else {
-        newName.value = '';
-        newComment.value = '';
-        newRating.value = '5';
-        await fetchFeedback(); 
+        if (error) {
+          console.error("INSERT ERROR:", error);
+          alert("Failed to submit feedback. Check console for details.");
+        } else {
+          alert("Thank you for your feedback!");
+          newName.value = '';
+          newComment.value = '';
+          newRating.value = '5';
+          await fetchFeedback(); 
+        }
+      } catch (err) {
+        console.error("Unexpected error submitting feedback:", err);
       }
     };
 
-    
     onMounted(fetchFeedback);
 
     return {
