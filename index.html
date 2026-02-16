@@ -12,11 +12,10 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
   <style>
-    .social-icons i { color: black !important; }
-    .hobby-img { border-radius: 15px; transition: 0.3s; width: 100%; object-fit: cover; height: 300px; }
+    .social-icons i { color: black !important; margin-right: 15px; }
+    .hobby-img { border-radius: 15px; transition: 0.3s; width: 100%; object-fit: cover; height: 350px; }
     .hobby-img:hover { transform: scale(1.05); }
     [v-cloak] { display: none; }
-    .w3-bar-item { font-weight: 600; }
   </style>
 </head>
 <body>
@@ -29,7 +28,7 @@
       <a href="#about" class="w3-bar-item w3-button">About</a>
       <a href="#education" class="w3-bar-item w3-button">Education</a>
       <a href="#goals" class="w3-bar-item w3-button">Goals</a>
-      <a href="#app" class="w3-bar-item w3-button">Rate Me</a>
+      <a href="#app" class="w3-bar-item w3-button w3-white w3-text-black">Rate Me</a>
     </div>
   </div>
 </div>
@@ -56,13 +55,19 @@
     <div class="w3-col l4 m12 w3-center">
       <h2><b>Education</b></h2>
       <p style="font-size: 20px;">
-        <strong>College:</strong> Currently studying <b>BS Computer Science</b> specializing in <b>Cybersecurity and Forensics</b> at APC.
+        <strong>College:</strong> Currently taking <b>BS Computer Science</b> specializing in <b>Cybersecurity and Forensics</b> at Asia Pacific College.
       </p>
     </div>
     <div class="w3-col l8 m12">
       <div class="w3-row-padding">
-        <div class="w3-half w3-center"><img src="Pictures/Chel1.jpg" class="hobby-img"><p>Sto Niño Catholic School</p></div>
-        <div class="w3-half w3-center"><img src="Pictures/Chel2.jpg" class="hobby-img"><p>Asia Pacific College (STEM)</p></div>
+        <div class="w3-half w3-center">
+          <img src="Pictures/Chel1.jpg" class="hobby-img">
+          <p>Sto Niño Catholic School</p>
+        </div>
+        <div class="w3-half w3-center">
+          <img src="Pictures/Chel2.jpg" class="hobby-img">
+          <p>Asia Pacific College (STEM)</p>
+        </div>
       </div>
     </div>
   </div>
@@ -142,9 +147,9 @@
         feedbackList.value = data || [];
       };
       const submitFeedback = async () => {
-        if (!newName.value || !newComment.value) { alert('Fill all fields!'); return; }
-        await supabase.from('guestbook').insert([{ name: newName.value, rating: parseInt(newRating.value), comment: newComment.value }]);
-        newName.value = ''; newComment.value = ''; fetchFeedback();
+        if (!newName.value || !newComment.value) { alert('Please fill all fields!'); return; }
+        const { error } = await supabase.from('guestbook').insert([{ name: newName.value, rating: parseInt(newRating.value), comment: newComment.value }]);
+        if (!error) { newName.value = ''; newComment.value = ''; fetchFeedback(); }
       };
       onMounted(fetchFeedback);
       return { newName, newRating, newComment, feedbackList, submitFeedback };
