@@ -15,13 +15,12 @@
     html { scroll-behavior: smooth; }
     .social-icons i { color: black !important; margin-right: 20px; font-size: 28px; }
     
-    .section-padding { padding: 80px 16px; }
-    
+    .section-padding { padding: 100px 16px; }
     .standard-img { border-radius: 15px; width: 100%; height: auto; object-fit: contain; max-height: 450px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     .hobby-img { border-radius: 15px; width: 100%; height: 350px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     [v-cloak] { display: none; }
-    
-    .w3-bar-item { font-size: 18px !important; }
+    .nav-btn { background-color: transparent !important; color: white !important; }
+    .nav-btn:hover { background-color: #616161 !important; color: white !important; }
   </style>
 </head>
 <body>
@@ -34,7 +33,7 @@
       <a href="#about" class="w3-bar-item w3-button">About</a>
       <a href="#education" class="w3-bar-item w3-button">Education</a>
       <a href="#goals" class="w3-bar-item w3-button">Goals</a>
-      <a href="#rate-section" class="w3-bar-item w3-button">Rate Me</a>
+      <a href="#rate-section" class="w3-bar-item w3-button nav-btn">Rate Me</a>
     </div>
   </div>
 </div>
@@ -58,22 +57,36 @@
   </div>
 </header>
 
+<div class="w3-content section-padding" style="max-width:1100px" id="about">
+  <div class="w3-row">
+    <div class="w3-col m6 w3-padding-large w3-center">
+      <img src="Pictures/Image (2).jpg" alt="Chelsea Hillary" class="w3-round w3-image" style="width:100%; max-width:500px; height:auto;">
+    </div>
+    <div class="w3-col m6 w3-padding-large">
+      <h1 class="w3-center w3-xxlarge"><b>About Me</b></h1><br>
+      <p class="w3-xlarge">
+        Hi! I’m <strong>Chelsea Hillary M. Nacalaban</strong>, a Computer Science student specializing in <b>Forensics and Cyber Security</b> at Asia Pacific College. Exploring new ideas, designs, and innovations is something I really enjoy doing. 
+      </p>
+    </div>
+  </div>
+</div>
+
 <div class="w3-container section-padding w3-light-grey" id="education">
   <div class="w3-content" style="max-width:1200px">
     <div class="w3-row-padding" style="display: flex; align-items: center; flex-wrap: wrap;">
       <div class="w3-col l4 m12">
         <h2 class="w3-xxlarge"><b>Education</b></h2>
         <p class="w3-xlarge" style="line-height: 1.6;">
-          Currently taking <b>BS Computer Science</b> specializing in <b>Cybersecurity and Forensics</b> at Asia Pacific College.
+          Currently taking <b>BS Computer Science</b> specializing in <b>Cybersecurity and Forensics</b> at APC.
         </p>
       </div>
       <div class="w3-col l8 m12">
         <div class="w3-row-padding">
-          <div class="w3-half w3-center">
+          <div class="w3-half w3-center w3-margin-bottom">
             <img src="Pictures/Chel1.jpg" class="standard-img">
             <p class="w3-large"><b>Sto Niño Catholic School</b></p>
           </div>
-          <div class="w3-half w3-center">
+          <div class="w3-half w3-center w3-margin-bottom">
             <img src="Pictures/Chel2.jpg" class="standard-img">
             <p class="w3-large"><b>Asia Pacific College (STEM)</b></p>
           </div>
@@ -90,6 +103,9 @@
         <h2 class="w3-xxlarge"><b>Goals & Dreams</b></h2>
         <p class="w3-xlarge" style="line-height: 1.6;">
           My priority is <b>graduating with my Bachelor’s degree</b>. Having a good job in the tech industry will be my gateway to achieve my goal of <b>traveling around the world</b>.
+        </p>
+        <p class="w3-large">
+          I’m a firm believer in <b>collecting experiences rather than things</b>. Whether it's tasting local street food, getting lost in a new city, or finally seeing a world-famous view in person, I want to see it all.
         </p>
       </div>
       <div class="w3-col l7 m12">
@@ -156,6 +172,7 @@
       const feedbackList = ref([]);
 
       const fetchFeedback = async () => {
+        
         const { data } = await supabase.from('comments').select('*').order('id', { ascending: false });
         feedbackList.value = data || [];
       };
