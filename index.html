@@ -18,7 +18,6 @@
     .section-padding { padding: 100px 16px; }
     .standard-img { border-radius: 15px; width: 100%; height: auto; object-fit: contain; max-height: 450px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     .hobby-img { border-radius: 15px; width: 100%; height: 350px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    [v-cloak] { display: none; }
     /* Reset Navigation Highlight */
     .nav-btn { background-color: transparent !important; color: white !important; }
     .nav-btn:hover { background-color: #616161 !important; color: white !important; }
@@ -123,15 +122,15 @@
 
 <div id="rate-section" class="w3-container w3-padding-64 w3-light-grey">
   <div class="w3-content" style="max-width:600px">
-    <div id="app" v-cloak>
+    <div id="app">
       <h2 class="w3-center"><b>Rate My Portfolio</b></h2>
 
-      <div class="w3-card-4 w3-padding w3-white w3-round">
-        <label>Name</label>
-        <input class="w3-input w3-border" type="text" v-model="newName" placeholder="Your Name">
+      <div class="w3-card-4 w3-padding w3-white w3-round w3-margin-top">
+        <label><b>Name</b></label>
+        <input class="w3-input w3-border w3-margin-bottom" type="text" v-model="newName" placeholder="Your Name">
 
-        <label>Rating (1-5)</label>
-        <select class="w3-select w3-border" v-model="newRating">
+        <label><b>Rating (1-5)</b></label>
+        <select class="w3-select w3-border w3-margin-bottom" v-model="newRating">
           <option value="5">🤍🤍🤍🤍🤍 - Excellent</option>
           <option value="4">🤍🤍🤍🤍 - Great</option>
           <option value="3">🤍🤍🤍 - Good</option>
@@ -139,21 +138,21 @@
           <option value="1">🤍 - Poor</option>
         </select>
 
-        <label>Remarks</label>
-        <textarea class="w3-input w3-border" v-model="newComment" placeholder="Feedback..."></textarea>
+        <label><b>Remarks</b></label>
+        <textarea class="w3-input w3-border w3-margin-bottom" v-model="newComment" placeholder="Share your feedback..." rows="4"></textarea>
 
-        <button class="w3-button w3-black w3-margin-top w3-block" @click="submitFeedback">
+        <button class="w3-button w3-black w3-block" @click="submitFeedback">
           Submit Feedback
         </button>
       </div>
 
       <div class="w3-margin-top">
-        <h3>Recent Remarks</h3>
-        <div v-if="feedbackList.length === 0" class="w3-panel w3-leftbar w3-white w3-padding">
+        <h3><b>Recent Remarks</b></h3>
+        <div v-if="feedbackList.length === 0" class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding">
           <p><i>No feedback yet. Be the first to share your thoughts!</i></p>
         </div>
-        <div v-for="item in feedbackList" :key="item.id" class="w3-panel w3-leftbar w3-white w3-padding">
-          <p><strong>{{ item.name }}</strong> ({{ item.rating }}/5)</p>
+        <div v-for="item in feedbackList" :key="item.id" class="w3-panel w3-leftbar w3-border-black w3-white w3-padding">
+          <p><strong>{{ item.name }}</strong> <span class="w3-tag w3-black w3-small">{{ item.rating }}/5</span></p>
           <p><i>"{{ item.comment }}"</i></p>
         </div>
       </div>
@@ -187,8 +186,10 @@ createApp({
           .select('*')
           .order('id', { ascending: false });
 
-        if (!error) {
+        if (!error && data) {
           feedbackList.value = data;
+        } else if (error) {
+          console.error("Error fetching feedback:", error);
         }
       } catch (err) {
         console.error("Error fetching feedback:", err);
@@ -214,7 +215,7 @@ createApp({
 
         if (error) {
           console.error("Supabase error:", error);
-          alert("Failed to submit. Please check console for details.");
+          alert("Failed to submit feedback. Please try again.");
         } else {
           alert("Thank you for your feedback!");
           newName.value = '';
@@ -228,7 +229,9 @@ createApp({
       }
     };
 
-    onMounted(fetchFeedback);
+    onMounted(() => {
+      fetchFeedback();
+    });
 
     return {
       newName,
