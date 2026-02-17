@@ -124,11 +124,11 @@
 
       <label><b>Rating (1-5)</b></label>
       <select class="w3-select w3-border w3-margin-bottom" id="ratingInput">
-        <option value="5">🤍🤍🤍🤍🤍 - Excellent</option>
-        <option value="4">🤍🤍🤍🤍 - Great</option>
-        <option value="3">🤍🤍🤍 - Good</option>
-        <option value="2">🤍🤍 - Fair</option>
-        <option value="1">🤍 - Poor</option>
+        <option value="5">5 - Excellent</option>
+        <option value="4">4 - Great</option>
+        <option value="3">3 - Good</option>
+        <option value="2">2 - Fair</option>
+        <option value="1">1 - Poor</option>
       </select>
 
       <label><b>Remarks</b></label>
@@ -147,39 +147,41 @@
   <p>Thank you for visiting my website, Chelsea Hillary M. Nacalaban</p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://unpkg.com/@supabase/supabase-js@2.39.3/dist/umd/supabase.js"></script>
 <script>
+let db;
 
-const SUPABASE_URL = 'https://oukjcvftqmasquxoypbp.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91a2pjdmZ0cW1hc3F1eG95cGJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4MTE1MDQsImV4cCI6MjA4NjM4NzUwNH0.iZT3dEZ8Iuuxgt1k_8L-xf9Mo7xJoYQ-bgrBz3OVPZ0';
-
-
-const db = supabasejs.createClient(SUPABASE_URL, SUPABASE_KEY);
+function initSupabase() {
+  const SUPABASE_URL = 'https://oukjcvftqmasquxoypbp.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91a2pjdmZ0cW1hc3F1eG95cGJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4MTE1MDQsImV4cCI6MjA4NjM4NzUwNH0.iZT3dEZ8Iuuxgt1k_8L-xf9Mo7xJoYQ-bgrBz3OVPZ0';
+  
+  if (window.supabase) {
+    db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    return true;
+  }
+  return false;
+}
 
 function showStatus(message, isError = false) {
   const statusDiv = document.getElementById('statusMessage');
   statusDiv.innerHTML = `<p class="w3-panel ${isError ? 'w3-red' : 'w3-green'}">${message}</p>`;
-  console.log(message);
 }
 
-
-window.addEventListener('DOMContentLoaded', async function() {
-  console.log('Page loaded');
-  try {
-    const { data, error } = await db.from('comments').select('count').limit(1);
-    if (error) {
-      console.error('Database test failed:', error);
-      showStatus('Database connection issue detected', true);
-    } else {
-      console.log('Database connected successfully');
-    }
-  } catch (err) {
-    console.error('Connection test error:', err);
+window.addEventListener('load', function() {
+  if (!initSupabase()) {
+    setTimeout(() => {
+      if (!initSupabase()) {
+        showStatus('Failed to load database library', true);
+      }
+    }, 500);
   }
 });
 
 async function submitFeedback() {
-  console.log('Submit button clicked');
+  if (!db) {
+    showStatus('Database not initialized. Please refresh the page.', true);
+    return;
+  }
   
   const submitBtn = document.getElementById('submitBtn');
   const nameInput = document.getElementById('nameInput');
@@ -193,9 +195,6 @@ async function submitFeedback() {
   const rating = ratingInput.value;
   const comment = commentInput.value.trim();
 
-  console.log('Form data:', { name, rating, comment });
-
-  
   if (!name || !comment) {
     showStatus('Please fill in your name and remarks.', true);
     submitBtn.disabled = false;
@@ -204,8 +203,6 @@ async function submitFeedback() {
   }
 
   try {
-    console.log('Sending to Supabase...');
-    
     const { data, error } = await db
       .from('comments')
       .insert([{
@@ -215,23 +212,16 @@ async function submitFeedback() {
       }])
       .select();
 
-    console.log('Supabase response:', { data, error });
-
     if (error) {
-      console.error('Supabase error:', error);
-      showStatus(`Error: ${error.message}`, true);
+      showStatus('Error: ' + error.message, true);
     } else {
-      console.log('Feedback submitted successfully!');
       showStatus('Thank you for your feedback!', false);
-      
-     
       nameInput.value = '';
       ratingInput.value = '5';
       commentInput.value = '';
     }
   } catch (err) {
-    console.error('Unexpected error:', err);
-    showStatus(`Error: ${err.message}`, true);
+    showStatus('Error: ' + err.message, true);
   } finally {
     submitBtn.disabled = false;
     submitBtn.innerHTML = 'Submit Feedback';
