@@ -11,11 +11,9 @@
   <style>
     html { scroll-behavior: smooth; }
     .social-icons i { color: black !important; margin-right: 20px; font-size: 28px; }
-    /* Standardized Sizing and Padding */
     .section-padding { padding: 100px 16px; }
     .standard-img { border-radius: 15px; width: 100%; height: auto; object-fit: contain; max-height: 450px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     .hobby-img { border-radius: 15px; width: 100%; height: 350px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    /* Reset Navigation Highlight */
     .nav-btn { background-color: transparent !important; color: white !important; }
     .nav-btn:hover { background-color: #616161 !important; color: white !important; }
   </style>
@@ -116,7 +114,6 @@
   </div>
 </div>
 
-
 <div id="rate-section" class="w3-container w3-padding-64 w3-light-grey">
   <div class="w3-content" style="max-width:600px">
     <h2 class="w3-center"><b>Rate My Portfolio</b></h2>
@@ -137,9 +134,11 @@
       <label><b>Remarks</b></label>
       <textarea class="w3-input w3-border w3-margin-bottom" id="commentInput" placeholder="Share your feedback..." rows="4"></textarea>
 
-      <button class="w3-button w3-black w3-block" onclick="submitFeedback()">
+      <button class="w3-button w3-black w3-block" id="submitBtn" onclick="submitFeedback()">
         Submit Feedback
       </button>
+      
+      <div id="statusMessage" class="w3-margin-top"></div>
     </div>
   </div>
 </div>
@@ -153,41 +152,87 @@
 const supabaseUrl = 'https://oukjcvftqmasquxoypbp.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91a2pjdmZ0cW1hc3F1eG95cGJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4MTE1MDQsImV4cCI6MjA4NjM4NzUwNH0.iZT3dEZ8Iuuxgt1k_8L-xf9Mo7xJoYQ-bgrBz3OVPZ0';
 
-const supabase = supabasejs.createClient(supabaseUrl, supabaseKey);
+let supabase;
+
+function showStatus(message, isError = false) {
+  const statusDiv = document.getElementById('statusMessage');
+  statusDiv.innerHTML = `<p class="w3-panel ${isError ? 'w3-red' : 'w3-green'}">${message}</p>`;
+  console.log(message);
+}
+
+window.onload = function() {
+  try {
+    supabase = supabasejs.createClient(supabaseUrl, supabaseKey);
+    console.log('✅ Supabase initialized');
+    testConnection();
+  } catch (error) {
+    console.error('❌ Supabase init failed:', error);
+    showStatus('Error initializing database', true);
+  }
+}
+
+async function testConnection() {
+  try {
+    const { data, error } = await supabase.from('comments').select('count').limit(1);
+    if (error) {
+      console.error('❌ DB test failed:', error);
+      showStatus('Database connection issue. Check console (F12).', true);
+    } else {
+      console.log('✅ Database connected');
+    }
+  } catch (err) {
+    console.error('❌ Test error:', err);
+  }
+}
 
 async function submitFeedback() {
+  console.log('🔄 Submitting...');
+  
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = 'Submitting...';
+  
   const name = document.getElementById('nameInput').value.trim();
   const rating = document.getElementById('ratingInput').value;
   const comment = document.getElementById('commentInput').value.trim();
 
+  console.log('Data:', { name, rating, comment });
+
   if (!name || !comment) {
-    alert("Please fill in your name and remarks.");
+    showStatus('Please fill in your name and remarks.', true);
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = 'Submit Feedback';
     return;
   }
 
   try {
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from('comments')
-      .insert([
-        {
-          name: name,
-          rating: parseInt(rating),
-          comment: comment
-        }
-      ]);
+      .insert([{
+        name: name,
+        rating: parseInt(rating),
+        comment: comment
+      }])
+      .select();
+
+    console.log('Response:', { data, error });
 
     if (error) {
-      console.error("Supabase error:", error);
-      alert("Failed to submit feedback. Error: " + error.message);
+      console.error('❌ Error:', error);
+      showStatus(`Error: ${error.message}`, true);
     } else {
-      alert("Thank you for your feedback!");
+      console.log('✅ Success!');
+      showStatus('Thank you! Feedback submitted successfully.', false);
       document.getElementById('nameInput').value = '';
       document.getElementById('ratingInput').value = '5';
       document.getElementById('commentInput').value = '';
     }
   } catch (err) {
-    console.error("Submission error:", err);
-    alert("An error occurred. Please try again.");
+    console.error('❌ Exception:', err);
+    showStatus(`Error: ${err.message}`, true);
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = 'Submit Feedback';
   }
 }
 </script>
