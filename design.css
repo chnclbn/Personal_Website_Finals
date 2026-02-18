@@ -51,16 +51,22 @@ h1, h2, h3, h4, h5, h6 {
   color: #b5737a;
 }
 
-/* Education Section Sizing */
-.standard-img {
-  width: 100%;
-  aspect-ratio: 1 / 1; 
-  object-fit: cover;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+/* ── Education Section ── */
+.education-img-wrap {
+  display: flex;
+  justify-content: center;
 }
 
-/* Goals & Dreams Section (Dark Grey Theme) */
+.standard-img {
+  width: 320px;
+  height: 380px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+/* ── Goals & Dreams Section ── */
 #goals {
   padding: 80px 0;
   background-color: #616161;
@@ -72,14 +78,22 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 900px;
   margin: 0 auto 50px auto;
   padding: 0 20px;
+  text-align: center;
 }
 
 #goals h2 {
   font-size: clamp(2em, 5vw, 2.5em);
   margin-bottom: 20px;
+  text-align: center;
 }
 
-/* Moving Gallery Logic */
+#goals p {
+  font-size: 1.05em;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* ── Moving Gallery ── */
 .strip-wrapper {
   width: 100%;
   overflow: hidden;
@@ -93,8 +107,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .photo-strip img {
-  width: 350px;
-  height: 250px;
+  width: 320px;
+  height: 280px;
   object-fit: cover;
   margin: 0 15px;
   border-radius: 15px;
@@ -103,7 +117,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes scroll {
-  0% { transform: translateX(0); }
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
@@ -111,7 +125,7 @@ h1, h2, h3, h4, h5, h6 {
   animation-play-state: paused;
 }
 
-/* Responsive Rules */
+/* ── Responsive ── */
 @media (max-width: 992px) {
   .w3-row-padding {
     display: flex !important;
@@ -124,9 +138,10 @@ h1, h2, h3, h4, h5, h6 {
     width: 100% !important;
     margin-bottom: 30px;
   }
-  
+
   .standard-img {
-    max-width: 300px;
+    width: 260px;
+    height: 300px;
   }
 }
 
@@ -135,8 +150,13 @@ h1, h2, h3, h4, h5, h6 {
     padding: 50px 15px;
   }
 
+  .standard-img {
+    width: 220px;
+    height: 260px;
+  }
+
   .photo-strip img {
-    width: 250px;
-    height: 180px;
+    width: 240px;
+    height: 200px;
   }
 }
