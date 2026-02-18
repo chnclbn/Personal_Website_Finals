@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #home, #about, #education, #goals {
-  padding: 60px 20px;
+  padding: 80px 20px;
 }
 
 #about {
@@ -33,14 +33,14 @@ h1, h2, h3, h4, h5, h6 {
 
 #about h1 {
   font-family: "Playfair Display", serif;
-  font-size: clamp(1.8em, 5vw, 2.6em);
+  font-size: clamp(2em, 5vw, 2.6em);
   margin-bottom: 10px;
   color: #3B3A30;
 }
 
 #about p {
   font-family: "Open Sans", sans-serif;
-  font-size: 1.05em;
+  font-size: 1.1em;
   line-height: 1.8;
   margin-bottom: 15px;
 }
@@ -51,44 +51,50 @@ h1, h2, h3, h4, h5, h6 {
   color: #b5737a;
 }
 
-.header-container {
+.standard-img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#goals .w3-row-padding {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  flex-wrap: wrap;
-  gap: 20px;
+  text-align: center;
 }
 
-.header-text {
-  flex: 1;
-  min-width: 300px;
-}
-
-.header-text h1 {
-  font-size: clamp(2em, 6vw, 3.5em);
+#goals .w3-col.l5 {
+  width: 100% !important;
+  max-width: 850px;
+  margin-bottom: 50px;
 }
 
 .strip-wrapper {
-  width: 100%;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
   overflow: hidden;
   padding: 20px 0;
-  display: flex;
 }
 
 .photo-strip {
   display: flex;
   width: max-content;
-  animation: scroll 30s linear infinite;
+  animation: scroll 40s linear infinite;
 }
 
 .photo-strip img {
-  width: 250px;
-  height: 350px;
+  width: 320px;
+  height: 220px;
   object-fit: cover;
-  margin: 0 10px;
-  border-radius: 15px;
+  margin: 0 12px;
+  border-radius: 12px;
   flex-shrink: 0;
 }
 
@@ -101,14 +107,6 @@ h1, h2, h3, h4, h5, h6 {
   animation-play-state: paused;
 }
 
-.standard-img {
-  width: 100%;
-  max-width: 400px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 15px;
-}
-
 @media (max-width: 992px) {
   .w3-row-padding {
     display: flex !important;
@@ -116,30 +114,24 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     text-align: center;
   }
-  
+
   .w3-col {
     width: 100% !important;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 
-  .header-socials {
-    justify-content: center;
-    display: flex;
+  #education .w3-col.l4 {
+    margin-bottom: 40px;
   }
 }
 
 @media (max-width: 600px) {
   #home, #about, #education, #goals {
-    padding: 40px 15px;
+    padding: 50px 15px;
   }
 
   .photo-strip img {
-    width: 180px;
-    height: 260px;
-  }
-
-  .w3-bar-item {
-    letter-spacing: 1px !important;
-    font-size: 0.9em;
+    width: 220px;
+    height: 160px;
   }
 }
