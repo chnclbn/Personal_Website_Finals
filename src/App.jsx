@@ -38,9 +38,10 @@ function App() {
     try {
       const res = await fetch(`${APIURL}/comments`)
       const data = await res.json()
-      setComments(Array.isArray(data) ? data : (data.comments || []))
+      setComments(Array.isArray(data) ? data : [])
     } catch (err) {
       console.error(err)
+      setComments([])
     } finally {
       setLoadingComments(false)
     }
@@ -77,7 +78,6 @@ function App() {
 
   return (
     <div className="w3-light-grey">
-  
       <nav className="w3-bar w3-black w3-card w3-top" style={{ letterSpacing: '4px', zIndex: 10 }}>
         <span className="w3-bar-item">Chelsea Portfolio</span>
         <div className="w3-right w3-hide-small">
@@ -89,7 +89,6 @@ function App() {
         </div>
       </nav>
 
-   
       <header id="home" className="w3-container w3-padding-64 w3-white" style={{ marginTop: '50px' }}>
         <div className="w3-content">
           <div className="w3-row-padding" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -109,7 +108,6 @@ function App() {
         </div>
       </header>
 
-      
       <div className="w3-content w3-padding-64" id="about">
         <div className="w3-row">
           <div className="w3-col m6 w3-padding-large w3-center">
@@ -122,7 +120,6 @@ function App() {
         </div>
       </div>
 
-      
       <div className="w3-container w3-padding-64 w3-light-grey" id="education">
         <div className="w3-content">
           <div className="w3-row-padding" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -133,11 +130,11 @@ function App() {
             <div className="w3-col l8 m12">
               <div className="w3-row-padding">
                 <div className="w3-half w3-center w3-margin-bottom">
-                  <img src="Pictures/Chel1.jpg" className="w3-round" style={{ width: '100%', borderRadius: '15px' }} alt="Sto Niño" />
+                  <img src="Pictures/Chel1.jpg" className="w3-round" style={{ width: '100%', borderRadius: '15px' }} alt="School 1" />
                   <p className="w3-large"><b>Sto Niño Catholic School</b></p>
                 </div>
                 <div className="w3-half w3-center w3-margin-bottom">
-                  <img src="Pictures/Chel2.jpg" className="w3-round" style={{ width: '100%', borderRadius: '15px' }} alt="APC" />
+                  <img src="Pictures/Chel2.jpg" className="w3-round" style={{ width: '100%', borderRadius: '15px' }} alt="School 2" />
                   <p className="w3-large"><b>Asia Pacific College (STEM)</b></p>
                 </div>
               </div>
@@ -152,10 +149,8 @@ function App() {
           <p className="w3-large">My priority is <b>graduating with my Bachelor's degree</b>. Having a good job in the tech industry will be my gateway to achieve my goal of <b>traveling around the world</b>.</p>
         </div>
 
-        
         <div className="strip-wrapper">
           <div className="photo-strip">
-           
             {[...goalPhotos, ...goalPhotos].map((src, i) => (
               <img key={i} src={src} alt={`Goal ${i}`} />
             ))}
@@ -163,7 +158,6 @@ function App() {
         </div>
       </div>
 
-     
       <div className="w3-content w3-padding-64" id="rate">
         <div className="w3-container w3-white w3-padding-32 w3-card-4" style={{ borderRadius: '15px' }}>
           <h2 className="w3-center"><b>Rate My Portfolio</b></h2>
