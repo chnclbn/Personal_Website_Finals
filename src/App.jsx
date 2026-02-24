@@ -78,9 +78,7 @@ function App() {
   return (
     <div className="w3-light-grey" style={{ width: '100%', margin: 0, padding: 0 }}>
       
-      
       <nav className="w3-bar w3-black w3-card w3-top" style={{ letterSpacing: '4px', zIndex: 10 }}>
-      
         <a href="#home" className="w3-bar-item w3-button"><b>Chelsea Portfolio</b></a>
         <div className="w3-right w3-hide-small">
           <a href="#home" className="w3-bar-item w3-button">Home</a>
@@ -91,7 +89,6 @@ function App() {
         </div>
       </nav>
 
-    
       <header id="home" className="w3-container w3-white" style={{ paddingTop: '80px', minHeight: '90vh', display: 'flex', alignItems: 'center' }}>
         <div className="w3-content" style={{ maxWidth: '1200px', width: '100%' }}>
           <div className="w3-row-padding" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', margin: 0 }}>
@@ -111,20 +108,19 @@ function App() {
         </div>
       </header>
 
- 
+      
       <div className="w3-content w3-padding-64" id="about" style={{ maxWidth: '1100px' }}>
-        <div className="w3-row" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-          <div className="w3-col m6 w3-padding-large w3-center">
-            <img src="Pictures/Image (2).jpg" className="w3-round w3-image" style={{ width: '100%', maxWidth: '450px' }} alt="About Me" />
-          </div>
-          <div className="w3-col m6 w3-padding-large">
+        <div className="w3-row w3-center">
+          <div className="w3-col m12 w3-padding-large">
+            <img src="Pictures/Image (2).jpg" className="w3-round w3-image" style={{ width: '100%', maxWidth: '500px', marginBottom: '32px' }} alt="About Me" />
             <h2 className="w3-center"><b>About Me</b></h2>
-            <p className="w3-large">Hi! I'm <strong>Chelsea Hillary M. Nacalaban</strong>, a Computer Science student specializing in <b>Forensics and Cyber Security</b> at Asia Pacific College. Exploring new ideas, designs, and innovations is something I really enjoy doing.</p>
+            <p className="w3-large" style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
+              Hi! I'm <strong>Chelsea Hillary M. Nacalaban</strong>, a Computer Science student specializing in <b>Forensics and Cyber Security</b> at Asia Pacific College. Exploring new ideas, designs, and innovations is something I really enjoy doing.
+            </p>
           </div>
         </div>
       </div>
 
-      
       <div className="w3-container w3-padding-64 w3-light-grey" id="education" style={{ margin: 0 }}>
         <div className="w3-content" style={{ maxWidth: '1200px' }}>
           <div className="w3-row-padding" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -148,13 +144,17 @@ function App() {
         </div>
       </div>
 
-      
+    
       <div className="w3-container w3-padding-64 w3-dark-grey" id="goals" style={{ margin: 0 }}>
         <div className="w3-content">
           <div className="w3-center" style={{ marginBottom: '40px' }}>
             <h2 className="w3-xxlarge"><b>Goals & Dreams</b></h2>
-            <p className="w3-large" style={{ maxWidth: '800px', margin: '0 auto' }}>
-              My priority is graduating with my Bachelor's degree. Having a good job in the tech industry will be my gateway to achieve my goal of traveling around the world.
+            <p className="w3-large" style={{ maxWidth: '850px', margin: '0 auto', textAlign: 'center' }}>
+              My priority is <strong>graduating with my Bachelor's degree</strong>. Having a good job in the tech industry will be my gateway to achieve my goal of <strong>traveling around the world</strong>.
+            </p>
+            <br />
+            <p className="w3-large" style={{ maxWidth: '850px', margin: '0 auto', textAlign: 'center' }}>
+              I'm a firm believer in <strong>collecting experiences rather than things</strong>. Whether it's tasting local street food, getting lost in a new city, or finally seeing a world-famous view in person, I want to see it all. Being able to watch my <strong>K-pop idols perform live</strong> is also a big achievement and opportunity I truly treasure.
             </p>
           </div>
           <div className="strip-wrapper">
@@ -167,7 +167,6 @@ function App() {
         </div>
       </div>
 
-      
       <div className="w3-content w3-padding-64" id="rate">
         <div className="w3-container w3-white w3-padding-32 w3-card-4" style={{ borderRadius: '15px' }}>
           <h2 className="w3-center"><b>Rate My Portfolio</b></h2>
