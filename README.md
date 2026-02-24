@@ -1,18 +1,22 @@
 
-# Webprog_Nacalaban
-# React + Vite
+# Webprog_Nacalaban Portfolio
+- This is my personal portfolio website that is build in React and Vercel. 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#Features
+-Responsive Design: Optimized for mobile, tablet, and desktop using a blend of W3.CSS and custom Flexbox styling.
 
-Currently, two official plugins are available:
+-Infinite Moving Gallery: A seamless, looping photo strip showcasing my dreams of traveling the world and collecting experiences.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-Live Rating of My Portfolio: A functional feedback system that fetches and displays recent visitor messages in real-time.
 
-## React Compiler
+-Interactive Navigation: A sticky navbar with functional links, including a "Home" button that returns users to the hero section.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-Connected Profiles on Socials: Facebook, Instagram, and LinkedIn.
 
-## Expanding the ESLint configuration
+Frontend: React.js, HTML, CSS.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Styling: W3.CSS and costom CSS.
+
+Deployment: Vercel.
+
+Backend/Database: Supabase / Vercel API.
