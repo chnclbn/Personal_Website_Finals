@@ -77,40 +77,57 @@ function App() {
 
   return (
     <div className="w3-light-grey" style={{ fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif' }}>
-      <nav className="w3-bar w3-black w3-card">
+      {/* RESTORED NAVIGATION */}
+      <nav className="w3-bar w3-black w3-card w3-top" style={{ letterSpacing: '4px', zIndex: 10 }}>
         <span className="w3-bar-item">Chelsea Portfolio</span>
         <div className="w3-right">
           <a href="#" className="w3-bar-item w3-button">Home</a>
           <a href="#about" className="w3-bar-item w3-button">About</a>
+          <a href="#education" className="w3-bar-item w3-button">Education</a>
           <a href="#goals" className="w3-bar-item w3-button">Goals</a>
           <a href="#rate" className="w3-bar-item w3-button">Rate Me</a>
         </div>
       </nav>
 
-      <header className="w3-container w3-padding-64 w3-center w3-white">
+      {/* RESTORED HEADER */}
+      <header className="w3-container w3-padding-64 w3-center w3-white" style={{ marginTop: '50px' }}>
         <h1 className="w3-jumbo"><b>Chelsea Portfolio</b></h1>
-        <p>by Chelsea Hillary M. Nacalaban</p>
+        <p className="w3-xlarge">by Chelsea Hillary M. Nacalaban</p>
       </header>
 
+      {/* RESTORED ABOUT SECTION */}
       <div className="w3-content w3-padding-64" id="about">
-        <h2 className="w3-center">About Me</h2>
-        <p className="w3-center">Hi! I'm Chelsea Hillary M. Nacalaban, a Computer Science student specializing in Forensics and Cyber Security at Asia Pacific College.</p>
+        <h2 className="w3-center"><b>About Me</b></h2>
+        <p className="w3-center w3-large">Hi! I'm <strong>Chelsea Hillary M. Nacalaban</strong>, a Computer Science student specializing in <b>Forensics and Cyber Security</b> at Asia Pacific College. Exploring new ideas, designs, and innovations is something I really enjoy doing.</p>
       </div>
 
-      <div className="w3-content w3-padding-64" id="goals">
-        <h2 className="w3-center">Goals & Dreams</h2>
-        <div className="w3-row-padding">
-          {goalPhotos.map((src, i) => (
-            <div key={i} className="w3-col l3 m6 w3-margin-bottom">
-              <img src={src} alt="Goal" style={{ width: '100%', borderRadius: '8px' }} />
-            </div>
-          ))}
+      {/* RESTORED EDUCATION SECTION */}
+      <div className="w3-container w3-padding-64 w3-light-grey" id="education">
+         <div className="w3-content">
+            <h2 className="w3-center"><b>Education</b></h2>
+            <p className="w3-center w3-large">Currently taking <b>BS Computer Science</b> specializing in <b>Cybersecurity and Forensics</b> at APC.</p>
+         </div>
+      </div>
+
+      {/* RESTORED DARK GREY GOALS SECTION */}
+      <div className="w3-container w3-padding-64 w3-dark-grey" id="goals">
+        <div className="w3-content">
+          <h2 className="w3-center"><b>Goals & Dreams</b></h2>
+          <p className="w3-center w3-large">My priority is <b>graduating with my Bachelor's degree</b>. Having a good job in the tech industry will be my gateway to achieve my goal of <b>traveling around the world</b>.</p>
+          <div className="w3-row-padding w3-margin-top">
+            {goalPhotos.map((src, i) => (
+              <div key={i} className="w3-col l3 m6 w3-margin-bottom">
+                <img src={src} alt="Goal" style={{ width: '100%', borderRadius: '15px', boxShadow: '0 4px 10px rgba(0,0,0,0.3)' }} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
+      {/* RESTORED RATE SECTION (WITH GUESTBOOK) */}
       <div className="w3-content w3-padding-64" id="rate">
         <div className="w3-container w3-white w3-padding-32 w3-card-4" style={{ borderRadius: '15px' }}>
-          <h2 className="w3-center">Rate My Portfolio</h2>
+          <h2 className="w3-center"><b>Rate My Portfolio</b></h2>
           
           <div className="w3-section">
             <label><b>Name</b></label>
