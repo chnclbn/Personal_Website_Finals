@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Trash2, Edit3 } from 'lucide-react'
+import { Trash2, Edit3, Send } from 'lucide-react'
 import './design.css'
 
 const APIURL = 'https://personal-website-finals-nt7v.vercel.app'
@@ -41,7 +41,7 @@ function App() {
       const data = await res.json()
       setComments(Array.isArray(data) ? data : (data.comments || []))
     } catch (err) {
-      console.error(err)
+      console.error("Failed to fetch", err)
     } finally {
       setLoadingComments(false)
     }
@@ -59,7 +59,7 @@ function App() {
   };
 
   const handleUpdate = async (id, currentComment) => {
-    const newComment = prompt("Edit your remarks:", currentComment);
+    const newComment = prompt("Edit your message:", currentComment);
     if (newComment && newComment !== currentComment) {
       try {
         await fetch(`${APIURL}/comments/${id}`, {
@@ -115,11 +115,7 @@ function App() {
         </div>
       </nav>
 
-      <header className="w3-container w3-padding-64 w3-center w3-white">
-        <h1 className="w3-jumbo"><b>Chelsea Portfolio</b></h1>
-        <p>by Chelsea Hillary M. Nacalaban</p>
-      </header>
-
+      {/* About and Goals sections unchanged as per your request */}
       <div className="w3-content w3-padding-64" id="about">
         <h2 className="w3-center">About Me</h2>
         <p className="w3-center">Hi! I'm Chelsea Hillary M. Nacalaban, a Computer Science student specializing in Forensics and Cyber Security at Asia Pacific College.</p>
@@ -136,13 +132,19 @@ function App() {
         </div>
       </div>
 
+      {/* Integrated Rate Section using Guestbook Style */}
       <div className="w3-content w3-padding-64" id="rate">
         <div className="w3-container w3-white w3-padding-32 w3-card-4" style={{ borderRadius: '15px' }}>
           <h2 className="w3-center">Rate My Portfolio</h2>
           
           <div className="w3-section">
             <label><b>Name</b></label>
-            <input className="w3-input w3-border w3-round" value={name} placeholder="Your Name" onChange={(e) => setName(e.target.value)} />
+            <input 
+                className="w3-input w3-border w3-round" 
+                value={name} 
+                placeholder="Please Input Your Name" 
+                onChange={(e) => setName(e.target.value)} 
+            />
           </div>
 
           <div className="w3-section">
@@ -168,11 +170,22 @@ function App() {
 
           <div className="w3-section">
             <label><b>Remarks</b></label>
-            <textarea className="w3-input w3-border w3-round" style={{ height: '100px' }} value={comment} placeholder="Share your feedback..." onChange={(e) => setComment(e.target.value)} />
+            <textarea 
+                className="w3-input w3-border w3-round" 
+                style={{ height: '100px' }} 
+                value={comment} 
+                placeholder="Please Leave a message..." 
+                onChange={(e) => setComment(e.target.value)} 
+            />
           </div>
 
-          <button className="w3-button w3-black w3-block w3-round-large" style={{ fontWeight: 'bold' }} onClick={submitFeedback} disabled={isSubmitting}>
-            {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
+          <button 
+            className="w3-button w3-black w3-block w3-round-large" 
+            style={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }} 
+            onClick={submitFeedback} 
+            disabled={isSubmitting}
+          >
+            <Send size={18} /> {isSubmitting ? 'Submitting...' : 'Post Message'}
           </button>
           
           {status && (
@@ -184,12 +197,12 @@ function App() {
           <hr style={{ borderTop: '2px solid #eee', margin: '40px 0' }} />
 
           <div className="w3-margin-top">
-            <h3 style={{ color: '#111' }}><b>Recent Entries ({comments.length})</b></h3>
+            <h3 style={{ color: '#111' }}><b>Recent Messages ({comments.length})</b></h3>
             <div style={{ marginTop: '20px' }}>
               {loadingComments ? (
                 <p className="w3-center">Loading entries...</p>
               ) : comments.length === 0 ? (
-                <p className="w3-center w3-text-grey">No entries yet. Be the first to sign!</p>
+                <p className="w3-center w3-text-grey">No entries yet.</p>
               ) : (
                 comments.map((c, i) => (
                   <div key={c.id || i} style={{ 
