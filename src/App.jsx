@@ -95,10 +95,21 @@ function App() {
               <h1 className="w3-jumbo"><b>Chelsea Portfolio</b></h1>
               <p className="w3-xlarge">by Chelsea Hillary M. Nacalaban</p>
               <div className="w3-margin-top" style={{ fontSize: '24px' }}>
-                 <i className="fa fa-facebook-official w3-hover-opacity w3-margin-right" style={{ cursor: 'pointer' }}></i>
-                 <i className="fa fa-instagram w3-hover-opacity w3-margin-right" style={{ cursor: 'pointer' }}></i>
-                 <i className="fa fa-linkedin w3-hover-opacity" style={{ cursor: 'pointer' }}></i>
-              </div>
+
+  <a href="https://www.facebook.com/share/17wBHhw3y2/?mibextid=wwXIfr" target="_blank" rel="noreferrer">
+    <i className="fa fa-facebook-official w3-hover-opacity w3-margin-right" style={{ cursor: 'pointer', color: 'black' }}></i>
+  </a>
+
+
+  <a href="https://www.instagram.com/chelsxe?igsh=MXB6ZWplbjF2eHg0NA%3D%3D&utm_source=qr" target="_blank" rel="noreferrer">
+    <i className="fa fa-instagram w3-hover-opacity w3-margin-right" style={{ cursor: 'pointer', color: 'black' }}></i>
+  </a>
+
+
+  <a href="https://www.linkedin.com/in/chelsea-hillary-nacalaban-a2490b321" target="_blank" rel="noreferrer">
+    <i className="fa fa-linkedin w3-hover-opacity" style={{ cursor: 'pointer', color: 'black' }}></i>
+  </a>
+</div>
             </div>
             <div className="w3-col l5 m12 w3-center">
               <img src="Pictures/Image (3).jpg" className="w3-image w3-round" style={{ width: '100%', maxWidth: '550px', borderRadius: '20px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }} alt="Chelsea" />
