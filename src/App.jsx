@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
+import { Trash2, Edit3 } from 'lucide-react'
 import './design.css'
 
-const API_URL = 'https://personal-website-finals-nt7v.vercel.app'
+const APIURL = 'https://personal-website-finals-nt7v.vercel.app'
 const goalPhotos = [
   'Pictures/AIR.jpg', 'Pictures/air2.jpg', 'Pictures/air1.jpg',
   'Pictures/Image (6).jpg', 'Pictures/Image (7).jpg', 'Pictures/Image (10).jpg',
@@ -36,7 +37,7 @@ function App() {
   async function fetchComments() {
     setLoadingComments(true)
     try {
-      const res = await fetch(`${API_URL}/comments`)
+      const res = await fetch(`${APIURL}/comments`)
       const data = await res.json()
       setComments(Array.isArray(data) ? data : (data.comments || []))
     } catch (err) {
@@ -46,6 +47,33 @@ function App() {
     }
   }
 
+  const handleDelete = async (id) => {
+    if (window.confirm("Delete this entry?")) {
+      try {
+        await fetch(`${APIURL}/comments/${id}`, { method: 'DELETE' });
+        fetchComments();
+      } catch (err) {
+        console.error("Delete failed", err);
+      }
+    }
+  };
+
+  const handleUpdate = async (id, currentComment) => {
+    const newComment = prompt("Edit your remarks:", currentComment);
+    if (newComment && newComment !== currentComment) {
+      try {
+        await fetch(`${APIURL}/comments/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ comment: newComment }),
+        });
+        fetchComments();
+      } catch (err) {
+        console.error("Update failed", err);
+      }
+    }
+  };
+
   async function submitFeedback() {
     if (!name || !comment || rating === 0) {
       setStatus({ msg: 'Please fill in all fields.', error: true })
@@ -54,7 +82,7 @@ function App() {
     setIsSubmitting(true)
     setStatus(null)
     try {
-      const res = await fetch(`${API_URL}/comments`, {
+      const res = await fetch(`${APIURL}/comments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, rating, comment }),
@@ -164,7 +192,7 @@ function App() {
                 <p className="w3-center w3-text-grey">No entries yet. Be the first to sign!</p>
               ) : (
                 comments.map((c, i) => (
-                  <div key={i} style={{ 
+                  <div key={c.id || i} style={{ 
                     background: '#121212', 
                     color: '#fff', 
                     borderRadius: '12px', 
@@ -172,21 +200,33 @@ function App() {
                     marginBottom: '20px',
                     borderLeft: '5px solid #00ff88'
                   }}>
-                    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                      <div style={{ 
-                        width: '45px', height: '45px', background: '#00ff88', color: '#000', 
-                        borderRadius: '10px', display: 'flex', alignItems: 'center', 
-                        justifyContent: 'center', fontWeight: 'bold', marginRight: '15px', fontSize: '1.2rem'
-                      }}>
-                        {c.name ? c.name.charAt(0).toUpperCase() : '?'}
-                      </div>
-                      <div>
-                        <strong style={{ fontSize: '1.1rem' }}>{c.name}</strong>
-                        <div style={{ fontSize: '0.8rem', color: '#888' }}>
-                          {c.date ? new Date(c.date).toLocaleString() : 'Recently'}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                        <div style={{ 
+                          width: '45px', height: '45px', background: '#00ff88', color: '#000', 
+                          borderRadius: '10px', display: 'flex', alignItems: 'center', 
+                          justifyContent: 'center', fontWeight: 'bold', marginRight: '15px', fontSize: '1.2rem'
+                        }}>
+                          {c.name ? c.name.charAt(0).toUpperCase() : '?'}
+                        </div>
+                        <div>
+                          <strong style={{ fontSize: '1.1rem' }}>{c.name}</strong>
+                          <div style={{ fontSize: '0.8rem', color: '#888' }}>
+                            {c.date ? new Date(c.date).toLocaleString() : 'Recently'}
+                          </div>
                         </div>
                       </div>
+                      
+                      <div style={{ display: 'flex', gap: '10px' }}>
+                        <button onClick={() => handleUpdate(c.id, c.comment)} style={{ color: '#00ff88', border: 'none', background: 'none', cursor: 'pointer' }}>
+                          <Edit3 size={18} />
+                        </button>
+                        <button onClick={() => handleDelete(c.id)} style={{ color: '#ff4d4d', border: 'none', background: 'none', cursor: 'pointer' }}>
+                          <Trash2 size={18} />
+                        </button>
+                      </div>
                     </div>
+
                     <StarDisplay rating={c.rating} />
                     <p style={{ color: '#ccc', lineHeight: '1.6', marginTop: '10px' }}>{c.comment}</p>
                   </div>
