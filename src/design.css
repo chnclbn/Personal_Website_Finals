@@ -16,19 +16,26 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  padding: 0 15px;
 }
 
 .w3-row-padding {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  margin: 0 -16px;
+}
+
+#home, #about, #education, #goals {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 #goals {
   padding: 80px 0;
   background-color: #616161;
   color: white;
-  width: 100%;
 }
 
 .strip-wrapper {
