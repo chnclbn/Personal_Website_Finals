@@ -40,8 +40,8 @@ function App() {
       const data = await res.json()
       setComments(Array.isArray(data) ? data : [])
     } catch (err) {
-      console.error("Fetch Error:", err)
-      setComments([]) 
+      console.error(err)
+      setComments([])
     } finally {
       setLoadingComments(false)
     }
@@ -62,7 +62,9 @@ function App() {
       })
       if (res.ok) {
         setStatus({ msg: 'Thank you for your feedback!', error: false })
-        setName(''); setRating(0); setComment('')
+        setName('')
+        setRating(0)
+        setComment('')
         fetchComments()
       } else {
         setStatus({ msg: 'Submission failed.', error: true })
@@ -75,7 +77,7 @@ function App() {
   }
 
   return (
-    <div className="w3-light-grey">
+    <div className="w3-light-grey" style={{ width: '100%' }}>
       <nav className="w3-bar w3-black w3-card w3-top" style={{ letterSpacing: '4px', zIndex: 10 }}>
         <span className="w3-bar-item">Chelsea Portfolio</span>
         <div className="w3-right w3-hide-small">
@@ -123,16 +125,16 @@ function App() {
           <div className="w3-row-padding" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
             <div className="w3-col l4 m12">
               <h2 className="w3-xxlarge"><b>Education</b></h2>
-              <p className="w3-large">Currently taking <b>BS Computer Science</b> at APC.</p>
+              <p className="w3-large">Currently taking <b>BS Computer Science</b> specializing in <b>Cybersecurity and Forensics</b> at APC.</p>
             </div>
             <div className="w3-col l8 m12">
               <div className="w3-row-padding">
                 <div className="w3-half w3-center w3-margin-bottom">
-                  <img src="Pictures/Chel1.jpg" className="w3-round" style={{ width: '100%', borderRadius: '15px' }} />
+                  <img src="Pictures/Chel1.jpg" className="w3-round" style={{ width: '100%', borderRadius: '15px' }} alt="School 1" />
                   <p className="w3-large"><b>Sto Niño Catholic School</b></p>
                 </div>
                 <div className="w3-half w3-center w3-margin-bottom">
-                  <img src="Pictures/Chel2.jpg" className="w3-round" style={{ width: '100%', borderRadius: '15px' }} />
+                  <img src="Pictures/Chel2.jpg" className="w3-round" style={{ width: '100%', borderRadius: '15px' }} alt="School 2" />
                   <p className="w3-large"><b>Asia Pacific College (STEM)</b></p>
                 </div>
               </div>
@@ -142,15 +144,17 @@ function App() {
       </div>
 
       <div className="w3-container w3-padding-64 w3-dark-grey" id="goals">
-        <div className="goals-text" style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <h2 className="w3-xxlarge"><b>Goals & Dreams</b></h2>
-          <p className="w3-large">Traveling the world is my gateway to achieving my goals.</p>
-        </div>
-        <div className="strip-wrapper">
-          <div className="photo-strip">
-            {[...goalPhotos, ...goalPhotos].map((src, i) => (
-              <img key={i} src={src} alt={`Goal ${i}`} />
-            ))}
+        <div className="w3-content">
+          <div className="w3-center goals-text">
+            <h2 className="w3-xxlarge"><b>Goals & Dreams</b></h2>
+            <p className="w3-large">My priority is graduating with my Bachelor's degree.</p>
+          </div>
+          <div className="strip-wrapper">
+            <div className="photo-strip">
+              {[...goalPhotos, ...goalPhotos].map((src, i) => (
+                <img key={i} src={src} alt={`Goal ${i}`} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -168,33 +172,51 @@ function App() {
               {[1, 2, 3, 4, 5].map(star => (
                 <span key={star} onClick={() => setRating(star)} onMouseEnter={() => setHovered(star)} onMouseLeave={() => setHovered(0)} style={{ fontSize: '2.2rem', cursor: 'pointer', color: star <= (hovered || rating) ? '#00ff88' : '#ccc' }}>★</span>
               ))}
+              <span className="w3-text-grey">{starLabels[hovered || rating]}</span>
             </div>
           </div>
           <div className="w3-section">
             <label><b>Remarks</b></label>
-            <textarea className="w3-input w3-border w3-round" value={comment} placeholder="Share feedback..." onChange={(e) => setComment(e.target.value)} />
+            <textarea className="w3-input w3-border w3-round" style={{ height: '100px' }} value={comment} placeholder="Share your feedback..." onChange={(e) => setComment(e.target.value)} />
           </div>
           <button className="w3-button w3-black w3-block w3-round-large" onClick={submitFeedback} disabled={isSubmitting}>
             {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
           </button>
           
+          {status && (
+            <div className={`w3-panel w3-margin-top w3-round ${status.error ? 'w3-red' : 'w3-green'}`}>
+              <p>{status.msg}</p>
+            </div>
+          )}
+
+          <hr style={{ borderTop: '2px solid #eee', margin: '40px 0' }} />
+
           <div className="w3-margin-top">
             <h3 style={{ color: '#111' }}><b>Recent Entries ({comments.length})</b></h3>
-            {loadingComments ? <p>Loading...</p> : comments.map((c, i) => (
-              <div key={i} style={{ background: '#121212', color: '#fff', borderRadius: '12px', padding: '20px', marginBottom: '20px', borderLeft: '5px solid #00ff88' }}>
-                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                  <div style={{ width: '45px', height: '45px', background: '#00ff88', color: '#000', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', marginRight: '15px' }}>
-                    {c.name ? c.name.charAt(0).toUpperCase() : '?'}
+            <div style={{ marginTop: '20px' }}>
+              {loadingComments ? <p className="w3-center">Loading entries...</p> : comments.map((c, i) => (
+                <div key={i} style={{ background: '#121212', color: '#fff', borderRadius: '12px', padding: '20px', marginBottom: '20px', borderLeft: '5px solid #00ff88' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                    <div style={{ width: '45px', height: '45px', background: '#00ff88', color: '#000', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', marginRight: '15px' }}>
+                      {c.name ? c.name.charAt(0).toUpperCase() : '?'}
+                    </div>
+                    <div>
+                      <strong>{c.name}</strong>
+                      <div style={{ fontSize: '0.8rem', color: '#888' }}>{c.date ? new Date(c.date).toLocaleString() : 'Recently'}</div>
+                    </div>
                   </div>
-                  <strong>{c.name}</strong>
+                  <StarDisplay rating={c.rating} />
+                  <p style={{ color: '#ccc', lineHeight: '1.6', marginTop: '10px' }}>{c.comment}</p>
                 </div>
-                <StarDisplay rating={c.rating} />
-                <p style={{ color: '#ccc', marginTop: '10px' }}>{c.comment}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
+
+      <footer className="w3-container w3-black w3-padding-32 w3-center">
+        <p>Thank you for visiting, Chelsea Hillary M. Nacalaban</p>
+      </footer>
     </div>
   )
 }
