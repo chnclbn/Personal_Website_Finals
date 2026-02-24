@@ -1,4 +1,4 @@
-\import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Trash2, Edit3 } from 'lucide-react'
 import './design.css'
 
