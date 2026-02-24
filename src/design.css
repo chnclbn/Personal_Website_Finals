@@ -22,11 +22,11 @@ body {
   padding: 0 15px;
 }
 
-.w3-row-padding {
+.w3-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin: 0;
+  justify-content: center;
 }
 
 #home {
@@ -34,8 +34,6 @@ body {
   min-height: 90vh;
   display: flex;
   align-items: center;
-  padding: 0;
-  margin: 0;
 }
 
 #about, #education, #goals {
@@ -81,9 +79,9 @@ body {
 }
 
 @media (max-width: 992px) {
-  .w3-row-padding {
-    flex-direction: column;
-    text-align: center;
+  .w3-row {
+    flex-direction: column !important;
+    text-align: center !important;
   }
   .w3-col {
     width: 100% !important;

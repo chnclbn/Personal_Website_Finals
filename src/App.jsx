@@ -41,7 +41,7 @@ function App() {
       const data = await res.json()
       setComments(Array.isArray(data) ? data : [])
     } catch (err) {
-      console.error("Failed to load comments:", err)
+      console.error(err)
       setComments([]) 
     } finally {
       setLoadingComments(false)
@@ -77,7 +77,6 @@ function App() {
 
   return (
     <div className="w3-light-grey" style={{ width: '100%', margin: 0, padding: 0 }}>
-      
       <nav className="w3-bar w3-black w3-card w3-top" style={{ letterSpacing: '4px', zIndex: 10 }}>
         <a href="#home" className="w3-bar-item w3-button"><b>Chelsea Portfolio</b></a>
         <div className="w3-right w3-hide-small">
@@ -108,13 +107,14 @@ function App() {
         </div>
       </header>
 
-      
       <div className="w3-content w3-padding-64" id="about" style={{ maxWidth: '1100px' }}>
-        <div className="w3-row w3-center">
-          <div className="w3-col m12 w3-padding-large">
-            <img src="Pictures/Image (2).jpg" className="w3-round w3-image" style={{ width: '100%', maxWidth: '500px', marginBottom: '32px' }} alt="About Me" />
-            <h2 className="w3-center"><b>About Me</b></h2>
-            <p className="w3-large" style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
+        <div className="w3-row" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div className="w3-col m6 w3-padding-large w3-center">
+            <img src="Pictures/Image (2).jpg" className="w3-round w3-image" style={{ width: '100%', maxWidth: '450px', borderRadius: '20px' }} alt="About Me" />
+          </div>
+          <div className="w3-col m6 w3-padding-large">
+            <h2><b>About Me</b></h2>
+            <p className="w3-large">
               Hi! I'm <strong>Chelsea Hillary M. Nacalaban</strong>, a Computer Science student specializing in <b>Forensics and Cyber Security</b> at Asia Pacific College. Exploring new ideas, designs, and innovations is something I really enjoy doing.
             </p>
           </div>
@@ -144,7 +144,6 @@ function App() {
         </div>
       </div>
 
-    
       <div className="w3-container w3-padding-64 w3-dark-grey" id="goals" style={{ margin: 0 }}>
         <div className="w3-content">
           <div className="w3-center" style={{ marginBottom: '40px' }}>
@@ -170,12 +169,10 @@ function App() {
       <div className="w3-content w3-padding-64" id="rate">
         <div className="w3-container w3-white w3-padding-32 w3-card-4" style={{ borderRadius: '15px' }}>
           <h2 className="w3-center"><b>Rate My Portfolio</b></h2>
-          
           <div className="w3-section">
             <label><b>Name</b></label>
             <input className="w3-input w3-border w3-round" value={name} placeholder="Your Name" onChange={(e) => setName(e.target.value)} />
           </div>
-
           <div className="w3-section">
             <label><b>Rating (1-5)</b></label>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -185,24 +182,19 @@ function App() {
               <span className="w3-text-grey">{starLabels[hovered || rating]}</span>
             </div>
           </div>
-
           <div className="w3-section">
             <label><b>Remarks</b></label>
             <textarea className="w3-input w3-border w3-round" style={{ height: '100px' }} value={comment} placeholder="Share your feedback..." onChange={(e) => setComment(e.target.value)} />
           </div>
-
           <button className="w3-button w3-black w3-block w3-round-large" onClick={submitFeedback} disabled={isSubmitting}>
             {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
           </button>
-          
           {status && (
             <div className={`w3-panel w3-margin-top w3-round ${status.error ? 'w3-red' : 'w3-green'}`}>
               <p>{status.msg}</p>
             </div>
           )}
-
           <hr style={{ borderTop: '2px solid #eee', margin: '40px 0' }} />
-
           <div className="w3-margin-top">
             <h3 style={{ color: '#111' }}><b>Recent Entries ({comments.length})</b></h3>
             <div style={{ marginTop: '20px' }}>
@@ -225,7 +217,6 @@ function App() {
           </div>
         </div>
       </div>
-
       <footer className="w3-container w3-black w3-padding-32 w3-center">
         <p>Thank you for visiting, Chelsea Hillary M. Nacalaban</p>
       </footer>
