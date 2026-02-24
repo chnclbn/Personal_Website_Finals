@@ -38,7 +38,8 @@ function App() {
     try {
       const res = await fetch(`${API_URL}/comments`)
       const data = await res.json()
-      setComments(Array.isArray(data) ? data : [])
+      // Note: If your API returns { comments: [...] }, use data.comments
+      setComments(Array.isArray(data) ? data : (data.comments || []))
     } catch (err) {
       console.error(err)
     } finally {
@@ -100,7 +101,7 @@ function App() {
       <div className="w3-content w3-padding-64" id="goals">
         <h2 className="w3-center">Goals & Dreams</h2>
         <div className="w3-row-padding">
-          {[...goalPhotos].map((src, i) => (
+          {goalPhotos.map((src, i) => (
             <div key={i} className="w3-col l3 m6 w3-margin-bottom">
               <img src={src} alt="Goal" style={{ width: '100%', borderRadius: '8px' }} />
             </div>
@@ -113,7 +114,7 @@ function App() {
           <h2 className="w3-center">Rate My Portfolio</h2>
           <div className="w3-section">
             <label>Name</label>
-            <input className="w3-input w3-border" value={name} onChange={(e) => setName(e.target.value)} />
+            <input className="w3-input w3-border" value={name} placeholder="Your Name" onChange={(e) => setName(e.target.value)} />
           </div>
           <div className="w3-section">
             <label>Rating</label>
@@ -136,34 +137,40 @@ function App() {
           </div>
           <div className="w3-section">
             <label>Remarks</label>
-            <textarea className="w3-input w3-border" value={comment} onChange={(e) => setComment(e.target.value)} />
+            <textarea className="w3-input w3-border" value={comment} placeholder="Share your feedback..." onChange={(e) => setComment(e.target.value)} />
           </div>
           <button className="w3-button w3-black w3-block" onClick={submitFeedback} disabled={isSubmitting}>
             {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
           </button>
+          
           {status && (
             <div className={`w3-panel w3-margin-top ${status.error ? 'w3-red' : 'w3-green'}`}>
               <p>{status.msg}</p>
             </div>
           )}
 
+          <hr style={{ borderTop: '2px solid #eee', margin: '40px 0' }} />
+
           <div className="w3-margin-top">
-            <h3 className="w3-center"><b>What Others Say</b></h3>
-            {loadingComments ? (
-              <p className="w3-center">Loading...</p>
-            ) : comments.length === 0 ? (
-              <p className="w3-center w3-text-grey">No comments yet.</p>
-            ) : (
-              comments.map((c, i) => (
-                <div key={i} style={{ background: '#f9f9f9', padding: '15px', marginTop: '10px', borderRadius: '8px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <strong>{c.name}</strong>
-                    <StarDisplay rating={c.rating} />
+            <h3 className="w3-center"><b>What Others Say 💬</b></h3>
+            <div style={{ marginTop: '20px' }}>
+              {loadingComments ? (
+                <p className="w3-center">Loading feedback...</p>
+              ) : comments.length === 0 ? (
+                <p className="w3-center w3-text-grey">No comments yet. Be the first!</p>
+              ) : (
+                comments.map((c, i) => (
+                  <div key={i} className="w3-card w3-round w3-white w3-padding" style={{ marginBottom: '15px', borderLeft: '5px solid #000' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <strong style={{ color: '#333' }}>{c.name}</strong>
+                      <StarDisplay rating={c.rating} />
+                    </div>
+                    <p style={{ margin: '8px 0', color: '#555' }}>{c.comment}</p>
+                    {c.date && <small className="w3-text-grey">{new Date(c.date).toLocaleDateString()}</small>}
                   </div>
-                  <p>{c.comment}</p>
-                </div>
-              ))
-            )}
+                ))
+              )}
+            </div>
           </div>
         </div>
       </div>
