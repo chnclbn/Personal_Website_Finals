@@ -1,260 +1,188 @@
-import { useState, useEffect } from 'react'
-import { Trash2, Edit3, Send } from 'lucide-react'
-import './design.css'
+import React, { useState, useEffect } from 'react';
+import { createClient } from '@supabase/supabase-js';
+import { Trash2, Edit3, Send, Facebook, Instagram, Linkedin } from 'lucide-react';
+import './design.css';
 
-const APIURL = 'https://personal-website-finals-nt7v.vercel.app'
+
+const SUPABASE_URL = 'https://oukjcvftqmasquxoypbp.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91a2pjdmZ0cW1hc3F1eG95cGJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4MTE1MDQsImV4cCI6MjA4NjM4NzUwNH0.iZT3dEZ8Iuuxgt1k_8L-xf9Mo7xJoYQ-bgrBz3OVPZ0';
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
 const goalPhotos = [
   'Pictures/AIR.jpg', 'Pictures/air2.jpg', 'Pictures/air1.jpg',
   'Pictures/Image (6).jpg', 'Pictures/Image (7).jpg', 'Pictures/Image (10).jpg',
-  'Pictures/Image (11).jpg', 'Pictures/Image (13).jpg',
-]
-const starLabels = ['', '1 - Poor', '2 - Fair', '3 - Good', '4 - Great', '5 - Excellent']
-
-function StarDisplay({ rating }) {
-  return (
-    <div style={{ display: 'flex', gap: '2px' }}>
-      {[1, 2, 3, 4, 5].map(s => (
-        <span key={s} style={{ color: s <= rating ? '#00ff88' : '#444' }}>★</span>
-      ))}
-    </div>
-  )
-}
+  'Pictures/Image (11).jpg', 'Pictures/Image (13).jpg'
+];
 
 function App() {
-  const [name, setName] = useState('')
-  const [rating, setRating] = useState(0)
-  const [hovered, setHovered] = useState(0)
-  const [comment, setComment] = useState('')
-  const [status, setStatus] = useState(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [comments, setComments] = useState([])
-  const [loadingComments, setLoadingComments] = useState(true)
+  const [entries, setEntries] = useState([]);
+  const [form, setForm] = useState({ name: '', rating: 5, comment: '' });
+  const [loading, setLoading] = useState(true);
+  const [status, setStatus] = useState(null);
 
   useEffect(() => {
-    fetchComments()
-  }, [])
+    fetchEntries();
+  }, []);
 
-  async function fetchComments() {
-    setLoadingComments(true)
-    try {
-      const res = await fetch(`${APIURL}/comments`)
-      const data = await res.json()
-      setComments(Array.isArray(data) ? data : (data.comments || []))
-    } catch (err) {
-      console.error("Failed to fetch", err)
-    } finally {
-      setLoadingComments(false)
+  const fetchEntries = async () => {
+    setLoading(true);
+    const { data, error } = await supabase
+      .from('comments')
+      .select('*')
+      .order('created_at', { ascending: false });
+    
+    if (!error) setEntries(data || []);
+    setLoading(false);
+  };
+
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!form.name || !form.comment) return;
+
+    const { error } = await supabase.from('comments').insert([
+      { name: form.name, rating: parseInt(form.rating), comment: form.comment }
+    ]);
+
+    if (!error) {
+      setStatus({ msg: 'Thank you for your feedback!', error: false });
+      setForm({ name: '', rating: 5, comment: '' });
+      fetchEntries(); 
+    } else {
+      setStatus({ msg: 'Error: ' + error.message, error: true });
     }
-  }
+  };
+
 
   const handleDelete = async (id) => {
     if (window.confirm("Delete this entry?")) {
-      try {
-        await fetch(`${APIURL}/comments/${id}`, { method: 'DELETE' });
-        fetchComments();
-      } catch (err) {
-        console.error("Delete failed", err);
-      }
+      await supabase.from('comments').delete().eq('id', id);
+      fetchEntries();
     }
   };
 
-  const handleUpdate = async (id, currentComment) => {
-    const newComment = prompt("Edit your message:", currentComment);
-    if (newComment && newComment !== currentComment) {
-      try {
-        await fetch(`${APIURL}/comments/${id}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ comment: newComment }),
-        });
-        fetchComments();
-      } catch (err) {
-        console.error("Update failed", err);
-      }
+  
+  const handleUpdate = async (id, oldComment) => {
+    const newComment = prompt("Edit your message:", oldComment);
+    if (newComment && newComment !== oldComment) {
+      await supabase.from('comments').update({ comment: newComment }).eq('id', id);
+      fetchEntries();
     }
   };
-
-  async function submitFeedback() {
-    if (!name || !comment || rating === 0) {
-      setStatus({ msg: 'Please fill in all fields.', error: true })
-      return
-    }
-    setIsSubmitting(true)
-    setStatus(null)
-    try {
-      const res = await fetch(`${APIURL}/comments`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, rating, comment }),
-      })
-      if (res.ok) {
-        setStatus({ msg: 'Thank you for your feedback!', error: false })
-        setName('')
-        setRating(0)
-        setComment('')
-        fetchComments()
-      } else {
-        setStatus({ msg: 'Submission failed.', error: true })
-      }
-    } catch (err) {
-      setStatus({ msg: err.message, error: true })
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
 
   return (
-    <div className="w3-light-grey" style={{ fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif' }}>
-      <nav className="w3-bar w3-black w3-card">
-        <span className="w3-bar-item">Chelsea Portfolio</span>
+    <div className="w3-light-grey">
+      
+      <nav className="w3-bar w3-black w3-card w3-top">
+        <a href="#home" className="w3-bar-item w3-button">Chelsea Portfolio</a>
         <div className="w3-right">
-          <a href="#" className="w3-bar-item w3-button">Home</a>
+          <a href="#home" className="w3-bar-item w3-button">Home</a>
           <a href="#about" className="w3-bar-item w3-button">About</a>
           <a href="#goals" className="w3-bar-item w3-button">Goals</a>
           <a href="#rate" className="w3-bar-item w3-button">Rate Me</a>
         </div>
       </nav>
 
-      {/* About and Goals sections unchanged as per your request */}
+     
+      <header id="home" className="w3-container w3-padding-64 w3-white w3-center">
+        <h1 className="w3-jumbo"><b>Chelsea Portfolio</b></h1>
+        <p className="w3-xlarge">by Chelsea Hillary M. Nacalaban</p>
+        <div className="w3-padding-16">
+          <Facebook className="w3-margin-right" />
+          <Instagram className="w3-margin-right" />
+          <Linkedin />
+        </div>
+      </header>
+
+      
       <div className="w3-content w3-padding-64" id="about">
-        <h2 className="w3-center">About Me</h2>
+        <h2 className="w3-center"><b>About Me</b></h2>
         <p className="w3-center">Hi! I'm Chelsea Hillary M. Nacalaban, a Computer Science student specializing in Forensics and Cyber Security at Asia Pacific College.</p>
       </div>
 
-      <div className="w3-content w3-padding-64" id="goals">
-        <h2 className="w3-center">Goals & Dreams</h2>
-        <div className="w3-row-padding">
-          {goalPhotos.map((src, i) => (
-            <div key={i} className="w3-col l3 m6 w3-margin-bottom">
-              <img src={src} alt="Goal" style={{ width: '100%', borderRadius: '8px' }} />
-            </div>
-          ))}
+      
+      <div className="w3-container w3-padding-64 w3-dark-grey" id="goals">
+        <div className="w3-content">
+          <h2 className="w3-center"><b>Goals & Dreams</b></h2>
+          <div className="w3-row-padding">
+            {goalPhotos.map((src, i) => (
+              <div key={i} className="w3-col l3 m6 w3-margin-bottom">
+                <img src={src} alt="Goal" style={{ width: '100%', borderRadius: '10px' }} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Integrated Rate Section using Guestbook Style */}
+      
       <div className="w3-content w3-padding-64" id="rate">
         <div className="w3-container w3-white w3-padding-32 w3-card-4" style={{ borderRadius: '15px' }}>
-          <h2 className="w3-center">Rate My Portfolio</h2>
-          
-          <div className="w3-section">
+          <h2 className="w3-center"><b>Rate My Portfolio</b></h2>
+
+          <form onSubmit={handleSubmit} className="w3-section">
             <label><b>Name</b></label>
-            <input 
-                className="w3-input w3-border w3-round" 
-                value={name} 
-                placeholder="Please Input Your Name" 
-                onChange={(e) => setName(e.target.value)} 
-            />
-          </div>
+            <input className="w3-input w3-border w3-round w3-margin-bottom" type="text" placeholder="Please Input Your Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
 
-          <div className="w3-section">
             <label><b>Rating (1-5)</b></label>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              {[1, 2, 3, 4, 5].map(star => (
-                <span
-                  key={star}
-                  onClick={() => setRating(star)}
-                  onMouseEnter={() => setHovered(star)}
-                  onMouseLeave={() => setHovered(0)}
-                  style={{
-                    fontSize: '2.2rem',
-                    cursor: 'pointer',
-                    color: star <= (hovered || rating) ? '#00ff88' : '#ccc',
-                    transition: '0.2s'
-                  }}
-                >★</span>
-              ))}
-              <span className="w3-text-grey">{starLabels[hovered || rating]}</span>
-            </div>
-          </div>
+            <select className="w3-select w3-border w3-margin-bottom" value={form.rating} onChange={(e) => setForm({ ...form, rating: e.target.value })}>
+              <option value="5">5 - Excellent</option>
+              <option value="4">4 - Great</option>
+              <option value="3">3 - Good</option>
+              <option value="2">2 - Fair</option>
+              <option value="1">1 - Poor</option>
+            </select>
 
-          <div className="w3-section">
             <label><b>Remarks</b></label>
-            <textarea 
-                className="w3-input w3-border w3-round" 
-                style={{ height: '100px' }} 
-                value={comment} 
-                placeholder="Please Leave a message..." 
-                onChange={(e) => setComment(e.target.value)} 
-            />
-          </div>
+            <textarea className="w3-input w3-border w3-margin-bottom" rows="4" placeholder="Please Leave a message..." value={form.comment} onChange={(e) => setForm({ ...form, comment: e.target.value })}></textarea>
 
-          <button 
-            className="w3-button w3-black w3-block w3-round-large" 
-            style={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }} 
-            onClick={submitFeedback} 
-            disabled={isSubmitting}
-          >
-            <Send size={18} /> {isSubmitting ? 'Submitting...' : 'Post Message'}
-          </button>
-          
+            <button type="submit" className="w3-button w3-black w3-block w3-round" style={{display:'flex', alignItems:'center', justifyContent:'center', gap:'10px'}}>
+              <Send size={18} /> Post Message
+            </button>
+          </form>
+
           {status && (
-            <div className={`w3-panel w3-margin-top w3-round ${status.error ? 'w3-red' : 'w3-green'}`}>
+            <div className={`w3-panel w3-round w3-margin-top ${status.error ? 'w3-red' : 'w3-green'}`}>
               <p>{status.msg}</p>
             </div>
           )}
 
-          <hr style={{ borderTop: '2px solid #eee', margin: '40px 0' }} />
+          <hr />
 
+         
           <div className="w3-margin-top">
-            <h3 style={{ color: '#111' }}><b>Recent Messages ({comments.length})</b></h3>
+            <h3><b>Recent Messages ({entries.length})</b></h3>
             <div style={{ marginTop: '20px' }}>
-              {loadingComments ? (
-                <p className="w3-center">Loading entries...</p>
-              ) : comments.length === 0 ? (
-                <p className="w3-center w3-text-grey">No entries yet.</p>
-              ) : (
-                comments.map((c, i) => (
-                  <div key={c.id || i} style={{ 
-                    background: '#121212', 
-                    color: '#fff', 
-                    borderRadius: '12px', 
-                    padding: '20px', 
-                    marginBottom: '20px',
-                    borderLeft: '5px solid #00ff88'
-                  }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                        <div style={{ 
-                          width: '45px', height: '45px', background: '#00ff88', color: '#000', 
-                          borderRadius: '10px', display: 'flex', alignItems: 'center', 
-                          justifyContent: 'center', fontWeight: 'bold', marginRight: '15px', fontSize: '1.2rem'
-                        }}>
-                          {c.name ? c.name.charAt(0).toUpperCase() : '?'}
-                        </div>
-                        <div>
-                          <strong style={{ fontSize: '1.1rem' }}>{c.name}</strong>
-                          <div style={{ fontSize: '0.8rem', color: '#888' }}>
-                            {c.date ? new Date(c.date).toLocaleString() : 'Recently'}
-                          </div>
-                        </div>
+              {loading ? <p className="w3-center">Loading...</p> : entries.map((entry) => (
+                <div key={entry.id} style={{ background: '#121212', color: '#fff', borderRadius: '12px', padding: '20px', marginBottom: '20px', borderLeft: '5px solid #00ff88' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <div style={{ width: '45px', height: '45px', background: '#00ff88', color: '#000', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', marginRight: '15px' }}>
+                        {entry.name.charAt(0).toUpperCase()}
                       </div>
-                      
-                      <div style={{ display: 'flex', gap: '10px' }}>
-                        <button onClick={() => handleUpdate(c.id, c.comment)} style={{ color: '#00ff88', border: 'none', background: 'none', cursor: 'pointer' }}>
-                          <Edit3 size={18} />
-                        </button>
-                        <button onClick={() => handleDelete(c.id)} style={{ color: '#ff4d4d', border: 'none', background: 'none', cursor: 'pointer' }}>
-                          <Trash2 size={18} />
-                        </button>
+                      <div>
+                        <strong>{entry.name}</strong>
+                        <div style={{ fontSize: '0.8rem', color: '#888' }}>{new Date(entry.created_at).toLocaleDateString()}</div>
                       </div>
                     </div>
-
-                    <StarDisplay rating={c.rating} />
-                    <p style={{ color: '#ccc', lineHeight: '1.6', marginTop: '10px' }}>{c.comment}</p>
+                    <div style={{display:'flex', gap:'10px'}}>
+                      <Edit3 size={18} style={{cursor:'pointer', color:'#00ff88'}} onClick={() => handleUpdate(entry.id, entry.comment)} />
+                      <Trash2 size={18} style={{cursor:'pointer', color:'#ff4d4d'}} onClick={() => handleDelete(entry.id)} />
+                    </div>
                   </div>
-                ))
-              )}
+                  <div style={{ color: '#f59e0b', margin: '10px 0' }}>{'★'.repeat(entry.rating)}{'☆'.repeat(5 - entry.rating)}</div>
+                  <p style={{ color: '#ccc' }}>{entry.comment}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
       <footer className="w3-container w3-black w3-padding-32 w3-center">
-        <p>Thank you for visiting my website, Chelsea Hillary M. Nacalaban</p>
+        <p>Thank you for visiting, Chelsea Hillary M. Nacalaban</p>
       </footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
