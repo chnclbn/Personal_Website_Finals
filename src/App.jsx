@@ -63,9 +63,7 @@ function App() {
       })
       if (res.ok) {
         setStatus({ msg: 'Thank you for your feedback!', error: false })
-        setName('')
-        setRating(0)
-        setComment('')
+        setName(''); setRating(0); setComment('')
         fetchComments()
       } else {
         setStatus({ msg: 'Submission failed.', error: true })
@@ -78,12 +76,14 @@ function App() {
   }
 
   return (
-    <div className="w3-light-grey" style={{ width: '100%' }}>
-     
+    <div className="w3-light-grey" style={{ width: '100%', margin: 0, padding: 0 }}>
+      
+      
       <nav className="w3-bar w3-black w3-card w3-top" style={{ letterSpacing: '4px', zIndex: 10 }}>
-        <span className="w3-bar-item">Chelsea Portfolio</span>
+      
+        <a href="#home" className="w3-bar-item w3-button"><b>Chelsea Portfolio</b></a>
         <div className="w3-right w3-hide-small">
-          <a href="#" className="w3-bar-item w3-button">Home</a>
+          <a href="#home" className="w3-bar-item w3-button">Home</a>
           <a href="#about" className="w3-bar-item w3-button">About</a>
           <a href="#education" className="w3-bar-item w3-button">Education</a>
           <a href="#goals" className="w3-bar-item w3-button">Goals</a>
@@ -91,42 +91,42 @@ function App() {
         </div>
       </nav>
 
-     
-      <header id="home" className="w3-container w3-padding-64 w3-white" style={{ marginTop: '50px' }}>
-        <div className="w3-content">
-          <div className="w3-row-padding" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+    
+      <header id="home" className="w3-container w3-white" style={{ paddingTop: '80px', minHeight: '90vh', display: 'flex', alignItems: 'center' }}>
+        <div className="w3-content" style={{ maxWidth: '1200px', width: '100%' }}>
+          <div className="w3-row-padding" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', margin: 0 }}>
             <div className="w3-col l7 m12">
               <h1 className="w3-jumbo"><b>Chelsea Portfolio</b></h1>
               <p className="w3-xlarge">by Chelsea Hillary M. Nacalaban</p>
               <div className="w3-margin-top" style={{ fontSize: '24px' }}>
-                 <i className="fa fa-facebook-official w3-hover-opacity w3-margin-right"></i>
-                 <i className="fa fa-instagram w3-hover-opacity w3-margin-right"></i>
-                 <i className="fa fa-linkedin w3-hover-opacity"></i>
+                 <i className="fa fa-facebook-official w3-hover-opacity w3-margin-right" style={{ cursor: 'pointer' }}></i>
+                 <i className="fa fa-instagram w3-hover-opacity w3-margin-right" style={{ cursor: 'pointer' }}></i>
+                 <i className="fa fa-linkedin w3-hover-opacity" style={{ cursor: 'pointer' }}></i>
               </div>
             </div>
             <div className="w3-col l5 m12 w3-center">
-              <img src="Pictures/Image (3).jpg" className="w3-image w3-round" style={{ width: '100%', maxWidth: '600px', borderRadius: '20px' }} alt="Chelsea" />
+              <img src="Pictures/Image (3).jpg" className="w3-image w3-round" style={{ width: '100%', maxWidth: '550px', borderRadius: '20px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }} alt="Chelsea" />
             </div>
           </div>
         </div>
       </header>
 
-      
-      <div className="w3-content w3-padding-64" id="about">
-        <div className="w3-row">
+ 
+      <div className="w3-content w3-padding-64" id="about" style={{ maxWidth: '1100px' }}>
+        <div className="w3-row" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
           <div className="w3-col m6 w3-padding-large w3-center">
-            <img src="Pictures/Image (2).jpg" className="w3-round w3-image" style={{ width: '100%', maxWidth: '500px' }} alt="About Me" />
+            <img src="Pictures/Image (2).jpg" className="w3-round w3-image" style={{ width: '100%', maxWidth: '450px' }} alt="About Me" />
           </div>
           <div className="w3-col m6 w3-padding-large">
             <h2 className="w3-center"><b>About Me</b></h2>
-            <p className="w3-large">Hi! I'm <strong>Chelsea Hillary M. Nacalaban</strong>, a Computer Science student specializing in <b>Forensics and Cyber Security</b> at Asia Pacific College.</p>
+            <p className="w3-large">Hi! I'm <strong>Chelsea Hillary M. Nacalaban</strong>, a Computer Science student specializing in <b>Forensics and Cyber Security</b> at Asia Pacific College. Exploring new ideas, designs, and innovations is something I really enjoy doing.</p>
           </div>
         </div>
       </div>
 
-     
-      <div className="w3-container w3-padding-64 w3-light-grey" id="education">
-        <div className="w3-content">
+      
+      <div className="w3-container w3-padding-64 w3-light-grey" id="education" style={{ margin: 0 }}>
+        <div className="w3-content" style={{ maxWidth: '1200px' }}>
           <div className="w3-row-padding" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
             <div className="w3-col l4 m12">
               <h2 className="w3-xxlarge"><b>Education</b></h2>
@@ -135,11 +135,11 @@ function App() {
             <div className="w3-col l8 m12">
               <div className="w3-row-padding">
                 <div className="w3-half w3-center w3-margin-bottom">
-                  <img src="Pictures/Chel1.jpg" className="w3-round" style={{ width: '100%', borderRadius: '15px' }} alt="High School" />
+                  <img src="Pictures/Chel1.jpg" className="w3-round" style={{ width: '100%', borderRadius: '15px', maxHeight: '400px', objectFit: 'cover' }} alt="High School" />
                   <p className="w3-large"><b>Sto Niño Catholic School</b></p>
                 </div>
                 <div className="w3-half w3-center w3-margin-bottom">
-                  <img src="Pictures/Chel2.jpg" className="w3-round" style={{ width: '100%', borderRadius: '15px' }} alt="College" />
+                  <img src="Pictures/Chel2.jpg" className="w3-round" style={{ width: '100%', borderRadius: '15px', maxHeight: '400px', objectFit: 'cover' }} alt="College" />
                   <p className="w3-large"><b>Asia Pacific College (STEM)</b></p>
                 </div>
               </div>
@@ -148,12 +148,14 @@ function App() {
         </div>
       </div>
 
-     
-      <div className="w3-container w3-padding-64 w3-dark-grey" id="goals">
+      
+      <div className="w3-container w3-padding-64 w3-dark-grey" id="goals" style={{ margin: 0 }}>
         <div className="w3-content">
           <div className="w3-center" style={{ marginBottom: '40px' }}>
             <h2 className="w3-xxlarge"><b>Goals & Dreams</b></h2>
-            <p className="w3-large">My priority is <b>graduating with my Bachelor's degree</b>.</p>
+            <p className="w3-large" style={{ maxWidth: '800px', margin: '0 auto' }}>
+              My priority is graduating with my Bachelor's degree. Having a good job in the tech industry will be my gateway to achieve my goal of traveling around the world.
+            </p>
           </div>
           <div className="strip-wrapper">
             <div className="photo-strip">
@@ -169,23 +171,27 @@ function App() {
       <div className="w3-content w3-padding-64" id="rate">
         <div className="w3-container w3-white w3-padding-32 w3-card-4" style={{ borderRadius: '15px' }}>
           <h2 className="w3-center"><b>Rate My Portfolio</b></h2>
+          
           <div className="w3-section">
             <label><b>Name</b></label>
             <input className="w3-input w3-border w3-round" value={name} placeholder="Your Name" onChange={(e) => setName(e.target.value)} />
           </div>
+
           <div className="w3-section">
             <label><b>Rating (1-5)</b></label>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               {[1, 2, 3, 4, 5].map(star => (
-                <span key={star} onClick={() => setRating(star)} onMouseEnter={() => setHovered(star)} onMouseLeave={() => setHovered(0)} style={{ fontSize: '2.2rem', cursor: 'pointer', color: star <= (hovered || rating) ? '#00ff88' : '#ccc' }}>★</span>
+                <span key={star} onClick={() => setRating(star)} onMouseEnter={() => setHovered(star)} onMouseLeave={() => setHovered(0)} style={{ fontSize: '2.2rem', cursor: 'pointer', color: star <= (hovered || rating) ? '#00ff88' : '#ccc', transition: '0.2s' }}>★</span>
               ))}
               <span className="w3-text-grey">{starLabels[hovered || rating]}</span>
             </div>
           </div>
+
           <div className="w3-section">
             <label><b>Remarks</b></label>
             <textarea className="w3-input w3-border w3-round" style={{ height: '100px' }} value={comment} placeholder="Share your feedback..." onChange={(e) => setComment(e.target.value)} />
           </div>
+
           <button className="w3-button w3-black w3-block w3-round-large" onClick={submitFeedback} disabled={isSubmitting}>
             {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
           </button>
@@ -198,7 +204,6 @@ function App() {
 
           <hr style={{ borderTop: '2px solid #eee', margin: '40px 0' }} />
 
-          
           <div className="w3-margin-top">
             <h3 style={{ color: '#111' }}><b>Recent Entries ({comments.length})</b></h3>
             <div style={{ marginTop: '20px' }}>

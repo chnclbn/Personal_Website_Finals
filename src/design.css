@@ -2,14 +2,17 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: "Open Sans", sans-serif;
+html, body {
   margin: 0;
   padding: 0;
-  background-color: #F4F1DE;
-  color: #3B3A30;
-  overflow-x: hidden;
   width: 100%;
+  overflow-x: hidden;
+  background-color: #F4F1DE;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  color: #3B3A30;
 }
 
 .w3-content {
@@ -23,17 +26,25 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin: 0 -16px;
+  margin: 0;
 }
 
-#home, #about, #education, #goals {
+#home {
   width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+#about, #education, #goals {
+  width: 100%;
+  padding: 80px 15px;
+  margin: 0;
 }
 
 #goals {
-  padding: 80px 0;
   background-color: #616161;
   color: white;
 }
