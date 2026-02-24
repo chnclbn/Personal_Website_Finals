@@ -36,7 +36,7 @@ body {
   align-items: center;
 }
 
-#about, #education, #goals {
+#about, #education, #skills, #projects, #goals {
   width: 100%;
   padding: 80px 15px;
   margin: 0;
@@ -45,6 +45,25 @@ body {
 #goals {
   background-color: #616161;
   color: white;
+}
+
+#skills .w3-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #ddd;
+}
+
+#skills .w3-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  border-color: #00ff88;
+}
+
+.w3-ul.w3-card {
+  transition: 0.3s;
+}
+
+.w3-ul.w3-card:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
 .strip-wrapper {
@@ -92,5 +111,5 @@ body {
 @media (max-width: 600px) {
   .w3-jumbo { font-size: 3.5rem !important; }
   .photo-strip img { width: 220px; height: 180px; }
-  #home, #about, #education, #goals { padding: 40px 10px; }
+  #home, #about, #education, #skills, #projects, #goals { padding: 40px 10px; }
 }

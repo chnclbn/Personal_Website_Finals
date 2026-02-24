@@ -83,6 +83,7 @@ function App() {
           <a href="#home" className="w3-bar-item w3-button">Home</a>
           <a href="#about" className="w3-bar-item w3-button">About</a>
           <a href="#education" className="w3-bar-item w3-button">Education</a>
+          <a href="#skills" className="w3-bar-item w3-button">Skills</a>
           <a href="#goals" className="w3-bar-item w3-button">Goals</a>
           <a href="#rate" className="w3-bar-item w3-button">Rate Me</a>
         </div>
@@ -154,6 +155,33 @@ function App() {
           </div>
         </div>
       </div>
+
+<div className="w3-content w3-padding-64" id="skills">
+  <h2 className="w3-center"><b>Technical Skills</b></h2>
+  <div className="w3-row-padding w3-center" style={{ marginTop: '32px' }}>
+    <div className="w3-third w3-margin-bottom">
+      <div className="w3-card w3-padding-24 w3-white" style={{ borderRadius: '15px' }}>
+        <i className="fa fa-shield w3-text-black" style={{ fontSize: '50px' }}></i>
+        <h4><b>Cyber Security</b></h4>
+        <p>Digital Forensics & Threat Analysis</p>
+      </div>
+    </div>
+    <div className="w3-third w3-margin-bottom">
+      <div className="w3-card w3-padding-24 w3-white" style={{ borderRadius: '15px' }}>
+        <i className="fa fa-code w3-text-black" style={{ fontSize: '50px' }}></i>
+        <h4><b>Web Programming</b></h4>
+        <p>React, PHP, and REST APIs</p>
+      </div>
+    </div>
+    <div className="w3-third w3-margin-bottom">
+      <div className="w3-card w3-padding-24 w3-white" style={{ borderRadius: '15px' }}>
+        <i className="fa fa-microchip w3-text-black" style={{ fontSize: '50px' }}></i>
+        <h4><b>IoT & Hardware</b></h4>
+        <p>Arduino & Sensor Integration</p>
+      </div>
+    </div>
+  </div>
+</div>
 
       <div className="w3-container w3-padding-64 w3-dark-grey" id="goals" style={{ margin: 0 }}>
         <div className="w3-content">
