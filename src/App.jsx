@@ -77,10 +77,10 @@ function App() {
 
   return (
     <div className="w3-light-grey" style={{ fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif' }}>
-      {/* RESTORED NAVIGATION */}
+    
       <nav className="w3-bar w3-black w3-card w3-top" style={{ letterSpacing: '4px', zIndex: 10 }}>
         <span className="w3-bar-item">Chelsea Portfolio</span>
-        <div className="w3-right">
+        <div className="w3-right w3-hide-small">
           <a href="#" className="w3-bar-item w3-button">Home</a>
           <a href="#about" className="w3-bar-item w3-button">About</a>
           <a href="#education" className="w3-bar-item w3-button">Education</a>
@@ -89,31 +89,70 @@ function App() {
         </div>
       </nav>
 
-      {/* RESTORED HEADER */}
-      <header className="w3-container w3-padding-64 w3-center w3-white" style={{ marginTop: '50px' }}>
-        <h1 className="w3-jumbo"><b>Chelsea Portfolio</b></h1>
-        <p className="w3-xlarge">by Chelsea Hillary M. Nacalaban</p>
+      
+      <header id="home" className="w3-container w3-padding-64 w3-white" style={{ marginTop: '50px' }}>
+        <div className="w3-content" style={{ maxWidth: '1200px' }}>
+          <div className="w3-row-padding" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+            <div className="w3-col l7 m12">
+              <h1 className="w3-jumbo"><b>Chelsea Portfolio</b></h1>
+              <p className="w3-xlarge">by Chelsea Hillary M. Nacalaban</p>
+              <div className="w3-margin-top" style={{ fontSize: '24px' }}>
+                 <i className="fa fa-facebook-official w3-hover-opacity w3-margin-right"></i>
+                 <i className="fa fa-instagram w3-hover-opacity w3-margin-right"></i>
+                 <i className="fa fa-linkedin w3-hover-opacity"></i>
+              </div>
+            </div>
+            <div className="w3-col l5 m12 w3-center">
+              <img src="Pictures/Image (3).jpg" className="w3-image w3-round" style={{ width: '100%', maxWidth: '600px', borderRadius: '20px' }} alt="Chelsea" />
+            </div>
+          </div>
+        </div>
       </header>
 
-      {/* RESTORED ABOUT SECTION */}
-      <div className="w3-content w3-padding-64" id="about">
-        <h2 className="w3-center"><b>About Me</b></h2>
-        <p className="w3-center w3-large">Hi! I'm <strong>Chelsea Hillary M. Nacalaban</strong>, a Computer Science student specializing in <b>Forensics and Cyber Security</b> at Asia Pacific College. Exploring new ideas, designs, and innovations is something I really enjoy doing.</p>
+   
+      <div className="w3-content w3-padding-64" id="about" style={{ maxWidth: '1100px' }}>
+        <div className="w3-row">
+          <div className="w3-col m6 w3-padding-large w3-center">
+            <img src="Pictures/Image (2).jpg" className="w3-round w3-image" style={{ width: '100%', maxWidth: '500px' }} alt="About Me" />
+          </div>
+          <div className="w3-col m6 w3-padding-large">
+            <h2 className="w3-center"><b>About Me</b></h2>
+            <p className="w3-large">Hi! I'm <strong>Chelsea Hillary M. Nacalaban</strong>, a Computer Science student specializing in <b>Forensics and Cyber Security</b> at Asia Pacific College. Exploring new ideas, designs, and innovations is something I really enjoy doing.</p>
+          </div>
+        </div>
       </div>
 
-      {/* RESTORED EDUCATION SECTION */}
+     
       <div className="w3-container w3-padding-64 w3-light-grey" id="education">
-         <div className="w3-content">
-            <h2 className="w3-center"><b>Education</b></h2>
-            <p className="w3-center w3-large">Currently taking <b>BS Computer Science</b> specializing in <b>Cybersecurity and Forensics</b> at APC.</p>
-         </div>
+        <div className="w3-content" style={{ maxWidth: '1200px' }}>
+          <div className="w3-row-padding" style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+            <div className="w3-col l4 m12">
+              <h2 className="w3-xxlarge"><b>Education</b></h2>
+              <p className="w3-large">Currently taking <b>BS Computer Science</b> specializing in <b>Cybersecurity and Forensics</b> at APC.</p>
+            </div>
+            <div className="w3-col l8 m12">
+              <div className="w3-row-padding">
+                <div className="w3-half w3-center w3-margin-bottom">
+                  <img src="Pictures/Chel1.jpg" className="w3-round" style={{ width: '100%', borderRadius: '15px' }} alt="School 1" />
+                  <p className="w3-large"><b>Sto Niño Catholic School</b></p>
+                </div>
+                <div className="w3-half w3-center w3-margin-bottom">
+                  <img src="Pictures/Chel2.jpg" className="w3-round" style={{ width: '100%', borderRadius: '15px' }} alt="School 2" />
+                  <p className="w3-large"><b>Asia Pacific College (STEM)</b></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* RESTORED DARK GREY GOALS SECTION */}
+      
       <div className="w3-container w3-padding-64 w3-dark-grey" id="goals">
-        <div className="w3-content">
-          <h2 className="w3-center"><b>Goals & Dreams</b></h2>
-          <p className="w3-center w3-large">My priority is <b>graduating with my Bachelor's degree</b>. Having a good job in the tech industry will be my gateway to achieve my goal of <b>traveling around the world</b>.</p>
+        <div className="w3-content" style={{ maxWidth: '1200px' }}>
+          <div className="w3-center">
+            <h2 className="w3-xxlarge"><b>Goals & Dreams</b></h2>
+            <p className="w3-large">My priority is <b>graduating with my Bachelor's degree</b>. Having a good job in the tech industry will be my gateway to achieve my goal of <b>traveling around the world</b>.</p>
+          </div>
           <div className="w3-row-padding w3-margin-top">
             {goalPhotos.map((src, i) => (
               <div key={i} className="w3-col l3 m6 w3-margin-bottom">
@@ -124,42 +163,27 @@ function App() {
         </div>
       </div>
 
-      {/* RESTORED RATE SECTION (WITH GUESTBOOK) */}
+      
       <div className="w3-content w3-padding-64" id="rate">
         <div className="w3-container w3-white w3-padding-32 w3-card-4" style={{ borderRadius: '15px' }}>
           <h2 className="w3-center"><b>Rate My Portfolio</b></h2>
-          
           <div className="w3-section">
             <label><b>Name</b></label>
             <input className="w3-input w3-border w3-round" value={name} placeholder="Your Name" onChange={(e) => setName(e.target.value)} />
           </div>
-
           <div className="w3-section">
             <label><b>Rating (1-5)</b></label>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               {[1, 2, 3, 4, 5].map(star => (
-                <span
-                  key={star}
-                  onClick={() => setRating(star)}
-                  onMouseEnter={() => setHovered(star)}
-                  onMouseLeave={() => setHovered(0)}
-                  style={{
-                    fontSize: '2.2rem',
-                    cursor: 'pointer',
-                    color: star <= (hovered || rating) ? '#00ff88' : '#ccc',
-                    transition: '0.2s'
-                  }}
-                >★</span>
+                <span key={star} onClick={() => setRating(star)} onMouseEnter={() => setHovered(star)} onMouseLeave={() => setHovered(0)} style={{ fontSize: '2.2rem', cursor: 'pointer', color: star <= (hovered || rating) ? '#00ff88' : '#ccc' }}>★</span>
               ))}
               <span className="w3-text-grey">{starLabels[hovered || rating]}</span>
             </div>
           </div>
-
           <div className="w3-section">
             <label><b>Remarks</b></label>
             <textarea className="w3-input w3-border w3-round" style={{ height: '100px' }} value={comment} placeholder="Share your feedback..." onChange={(e) => setComment(e.target.value)} />
           </div>
-
           <button className="w3-button w3-black w3-block w3-round-large" style={{ fontWeight: 'bold' }} onClick={submitFeedback} disabled={isSubmitting}>
             {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
           </button>
@@ -175,40 +199,21 @@ function App() {
           <div className="w3-margin-top">
             <h3 style={{ color: '#111' }}><b>Recent Entries ({comments.length})</b></h3>
             <div style={{ marginTop: '20px' }}>
-              {loadingComments ? (
-                <p className="w3-center">Loading entries...</p>
-              ) : comments.length === 0 ? (
-                <p className="w3-center w3-text-grey">No entries yet. Be the first to sign!</p>
-              ) : (
-                comments.map((c, i) => (
-                  <div key={i} style={{ 
-                    background: '#121212', 
-                    color: '#fff', 
-                    borderRadius: '12px', 
-                    padding: '20px', 
-                    marginBottom: '20px',
-                    borderLeft: '5px solid #00ff88'
-                  }}>
-                    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                      <div style={{ 
-                        width: '45px', height: '45px', background: '#00ff88', color: '#000', 
-                        borderRadius: '10px', display: 'flex', alignItems: 'center', 
-                        justifyContent: 'center', fontWeight: 'bold', marginRight: '15px', fontSize: '1.2rem'
-                      }}>
-                        {c.name ? c.name.charAt(0).toUpperCase() : '?'}
-                      </div>
-                      <div>
-                        <strong style={{ fontSize: '1.1rem' }}>{c.name}</strong>
-                        <div style={{ fontSize: '0.8rem', color: '#888' }}>
-                          {c.date ? new Date(c.date).toLocaleString() : 'Recently'}
-                        </div>
-                      </div>
+              {loadingComments ? <p className="w3-center">Loading entries...</p> : comments.map((c, i) => (
+                <div key={i} style={{ background: '#121212', color: '#fff', borderRadius: '12px', padding: '20px', marginBottom: '20px', borderLeft: '5px solid #00ff88' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                    <div style={{ width: '45px', height: '45px', background: '#00ff88', color: '#000', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', marginRight: '15px' }}>
+                      {c.name ? c.name.charAt(0).toUpperCase() : '?'}
                     </div>
-                    <StarDisplay rating={c.rating} />
-                    <p style={{ color: '#ccc', lineHeight: '1.6', marginTop: '10px' }}>{c.comment}</p>
+                    <div>
+                      <strong>{c.name}</strong>
+                      <div style={{ fontSize: '0.8rem', color: '#888' }}>{c.date ? new Date(c.date).toLocaleString() : 'Recently'}</div>
+                    </div>
                   </div>
-                ))
-              )}
+                  <StarDisplay rating={c.rating} />
+                  <p style={{ color: '#ccc', lineHeight: '1.6', marginTop: '10px' }}>{c.comment}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
